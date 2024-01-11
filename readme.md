@@ -4,51 +4,51 @@ Since square footage is limited in the city, the site will function as the digit
 
 ## LIST OF MODELS
 
--- FINE ART
-artist
-description
-creation date(s)
-materials used
-dimensions
-price
-image
+### FINE ART
+-artist
+-description
+-creation date(s)
+-materials used
+-dimensions
+-price
+-image
 
--- ARTIST
-birth date
-about artist
-list of fine arts
-list of goods
-website link
+### ARTIST
+-birth date
+-about artist
+-list of fine arts
+-list of goods
+-website link
 
--- GOODS
-artist / brand / designer
-description
-materials used
-dimensions
-price
-image
+### GOODS
+-artist / brand / designer
+-description
+-materials used
+-dimensions
+-price
+-image
 
--- BRAND / DESIGNER
-about brand / designer
-list of goods
-website link
+### BRAND / DESIGNER
+-about brand / designer
+-list of goods
+-website link
 
--- EVENT
-title
-description
-poster
-time
-date
-(artist)
-(designer)
+### EVENT
+-title
+-description
+-poster
+-time
+-date
+-(artist)
+-(designer)
 
--- OFFER
-(good)
-(fine art)
-offer amount
-name
-phone number
-email
+### OFFER
+-(good)
+-(fine art)
+-offer amount
+-name
+-phone number
+-email
 
 
 ## WIREFRAMES
@@ -65,11 +65,11 @@ email
 
 
 AS AN ADMIN...
-    -- I will be able to edit when an event is added to the schedule
-    -- when a piece of art or a good is added and when it is taken down (sold)
+    ### I will be able to edit when an event is added to the schedule
+    ### when a piece of art or a good is added and when it is taken down (sold)
 
 
 AS A USER...
-    -- I will be able to search for art and goods on their respective search pages (live filter?)
-    -- I will be able to make an offer for an item
+    ### I will be able to search for art and goods on their respective search pages (live filter?)
+    ### I will be able to make an offer for an item
 
