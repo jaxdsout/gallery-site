@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Creator, Item
+from .models import Creator, Item, Bid
 
 class CreatorSerializer(serializers.HyperlinkedModelSerializer):
     items = serializers.HyperlinkedRelatedField(
@@ -13,8 +13,8 @@ class CreatorSerializer(serializers.HyperlinkedModelSerializer):
         fields = (
             'role',
             'name',
-            'about',
             'website',
+            'about',
             'items'
         )
 
@@ -46,5 +46,30 @@ class ItemSerializer(serializers.HyperlinkedModelSerializer):
             'listing_end',
             'current_price',
             'starting_price',
-            'image'
+            'image',
+            'bids'
+        )
+
+class BidSerializer(serializers.HyperlinkedModelSerializer):
+    item = serializers.HyperlinkedRelatedField(
+        view_name='item-detail',
+        read_only=True
+    )
+
+    item_id = serializers.PrimaryKeyRelatedField(
+        queryset=Item.objects.all(),
+        source='item'
+    )
+
+    class Meta:
+        model = Bid
+        fields = (
+            'id',
+            'item_id',
+            'item',
+            'bidder',
+            'amount',
+            'email',
+            'phone_number',
+            
         )
