@@ -12,7 +12,6 @@ djoser = "*"
 django-cors-headers = "*"
 whitenoise = "*"
 python-dotenv = "*"
-djangorestframework = "*"
 
 [dev-packages]
 
