@@ -1,5 +1,7 @@
 from django.db import models
 
+import os
+
 class Creator(models.Model):
     ROLES = [
         ('A', 'Artist'),
@@ -13,6 +15,7 @@ class Creator(models.Model):
 
     def __str__(self):
         return self.name
+
 
 
 class Item (models.Model):
@@ -33,11 +36,12 @@ class Item (models.Model):
     listing_end = models.DateField()
     current_price = models.IntegerField(default=0)
     starting_price = models.IntegerField(default=1)
-    image = models.ImageField(upload_to='items', null=True, blank=True)
+    image = models.ImageField(upload_to='images', null=True, blank=True)
     creator = models.ForeignKey(Creator, on_delete=models.CASCADE, related_name='items')
 
     def __str__(self):
         return self.title
+
 
 
 class Bid (models.Model):
