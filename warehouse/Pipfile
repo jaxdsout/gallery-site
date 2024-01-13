@@ -12,6 +12,7 @@ djoser = "*"
 django-cors-headers = "*"
 whitenoise = "*"
 python-dotenv = "*"
+pillow = "*"
 
 [dev-packages]
 
