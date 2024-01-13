@@ -33,7 +33,7 @@ class Item (models.Model):
     listing_end = models.DateField()
     current_price = models.IntegerField(default=0)
     starting_price = models.IntegerField(default=1)
-    image = models.ImageField(upload_to='items', blank=True)
+    image = models.ImageField(upload_to='items', null=True, blank=True)
     creator = models.ForeignKey(Creator, on_delete=models.CASCADE, related_name='items')
 
     def __str__(self):
