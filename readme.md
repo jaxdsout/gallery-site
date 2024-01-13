@@ -4,9 +4,9 @@ Since square footage is limited in the city, the site will function as the digit
 
 ## WIREFRAMES
 
-![wire4](wires/wire4.png)
+![wire4](https://i.imgur.com/6YKXIwK.png)
 
-![wire5](wires/wire5.png)
+![wire5](https://i.imgur.com/OE3aZgU.png)
 
 
 ## LIST OF MODELS
