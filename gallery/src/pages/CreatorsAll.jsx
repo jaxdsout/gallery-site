@@ -1,6 +1,6 @@
 import React from "react";
 
-function AllCreators({creators}) {
+function CreatorsAll({creators}) {
   return (
     <div>
       {creators.map((creator, index) => (
@@ -14,4 +14,4 @@ function AllCreators({creators}) {
   )
 }
 
-export default AllCreators;
+export default CreatorsAll;

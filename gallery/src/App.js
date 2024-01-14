@@ -1,19 +1,74 @@
 import './App.css';
-import AllItems from './components/Items/AllItems'
-import Item from './components/Items/Item'
-import Creator from './components/Creators/Creator'
-import AllCreators from './components/Creators/AllCreators'
+import AllItems from './pages/ItemsAll'
+import Item from './pages/ItemDetail'
+import Creator from './pages/CreatorDetail'
+import AllCreators from './pages/CreatorsAll'
+import Bid from './components/Bid';
 import axios from 'axios';
 
 import React, {useState, useEffect} from 'react';
 import {Route, Routes} from 'react-router-dom'
 
 const API_url = 'http://localhost:8000/inventory/'
+const bid_url = 'http://localhost:8000/inventory/make-bid'
+
 
 function App() {
 
   const [items, setItems] = useState([]);
   const [creators, setCreators] = useState([]);
+  const [bid, setBid] = useState(null);
+
+
+  // const handleBid = async (bid, event, item) => {
+  //   event.preventDefault();
+  //   setBid(event.target.value);
+  //   console.log(item)
+    
+  //   try {
+  //     const response = await axios.post(
+  //       `${bid_url}`, 
+  //       {
+  //         item_id: item.id,
+  //         item: item,
+  //         amount: parseInt(bid)
+  //       },
+  //       {
+  //         headers: {
+  //           "Content-Type":"application/json"
+  //         }
+  //       });
+  //     const data = response.data;
+  //     setBid(data);
+  //   } catch (error) {
+  //     console.error("Error submitting bid:", error);
+  //   }
+  // }
+
+  const handleBid = async (bid, event) => {
+    event.preventDefault();
+    setBid(event.target.value);
+    try {
+      const res =  await fetch(`${bid_url}`,{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body: JSON.stringify(bid)
+      } )
+      const newBid = await res.json();
+
+      if(newBid.id){
+        getItems();
+      }else {
+        throw new Error("Something went wrong")
+      }
+
+    } catch (error) {
+        console.error(error)
+    }
+  }
+
   
   async function getItems() {
     try {
@@ -56,7 +111,7 @@ function App() {
           element={<AllItems items={items} />} />
         <Route
           path="/items/:id"
-          element={<Item />}
+          element={<Item items={items}/>}
         />
         <Route
           path="/creators/all/"
@@ -64,7 +119,11 @@ function App() {
         />
         <Route
           path="/creators/:id"
-          element={<Creator creators={creators} />}
+          element={<Creator creators={creators} items={items} />}
+        />
+        <Route
+          path="/bid/"
+          element={<Bid handleBid={handleBid} bid={bid} />}
         />
       </Routes>
     </div>

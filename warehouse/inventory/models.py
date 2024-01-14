@@ -1,10 +1,5 @@
 from django.db import models
 
-import os
-
-def upload_to(instance, filename):
-    return 'items/{filename}'.format(filename=filename)
-
 class Creator(models.Model):
     ROLES = [
         ('Artist', 'Artist'),
@@ -20,6 +15,8 @@ class Creator(models.Model):
         return self.name
 
 
+def upload_to(instance, filename):
+    return 'items/{filename}'.format(filename=filename)
 
 class Item (models.Model):
     CATEGORIES = [
@@ -44,7 +41,6 @@ class Item (models.Model):
 
     def __str__(self):
         return self.title
-
 
 
 class Bid (models.Model):
