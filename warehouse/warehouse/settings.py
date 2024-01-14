@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-import os # <- import the os module
+import os
 from dotenv import load_dotenv
 load_dotenv()
 import dj_database_url
@@ -157,6 +157,8 @@ DJOSER = {
     }
 }
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 CORS_ALLOW_ALL_ORIGINS = True 
 

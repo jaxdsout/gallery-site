@@ -2,6 +2,9 @@ from django.db import models
 
 import os
 
+def upload_to(instance, filename):
+    return 'items/{filename}'.format(filename=filename)
+
 class Creator(models.Model):
     ROLES = [
         ('A', 'Artist'),
@@ -36,7 +39,7 @@ class Item (models.Model):
     listing_end = models.DateField()
     current_price = models.IntegerField(default=0)
     starting_price = models.IntegerField(default=1)
-    image = models.ImageField(upload_to='images', null=True, blank=True)
+    image = models.ImageField(upload_to=upload_to, default='default.jpg', null=True, blank=True)
     creator = models.ForeignKey(Creator, on_delete=models.CASCADE, related_name='items')
 
     def __str__(self):

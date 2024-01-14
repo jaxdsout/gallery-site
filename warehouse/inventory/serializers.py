@@ -22,7 +22,6 @@ class CreatorSerializer(serializers.HyperlinkedModelSerializer):
 class ItemSerializer(serializers.HyperlinkedModelSerializer):
     creator = CreatorSerializer(read_only=True)
 
-
     creator_id = serializers.PrimaryKeyRelatedField(
         queryset=Creator.objects.all(),
         source='creator'
