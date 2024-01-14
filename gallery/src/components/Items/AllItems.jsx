@@ -5,7 +5,11 @@ function AllItems({items}) {
   return (
     <div>
       {items.map((item, index) => (
-        <Item key={index} item={item} />
+        <div>
+          <img style={{ width: '300px' }} src={item.image} alt={item.title}/>
+          <br></br>
+          <a href={`/items/${item.id}`}>{item.title}</a>
+        </div>
       ))}
     </div>
   )
