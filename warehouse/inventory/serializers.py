@@ -11,6 +11,7 @@ class CreatorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Creator
         fields = (
+            'id',
             'role',
             'name',
             'website',
@@ -64,9 +65,5 @@ class BidSerializer(serializers.HyperlinkedModelSerializer):
             'id',
             'item_id',
             'item',
-            'bidder',
             'amount',
-            'email',
-            'phone_number',
-            
         )

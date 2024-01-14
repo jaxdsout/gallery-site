@@ -34,12 +34,6 @@ function App() {
       console.error('Error fetching creators', error);
     }
   }
-  
-  function handleBid (event) {
-    if (event.key === 'click' ) {
-      getBidForm()
-    }
-  }
 
   useEffect(() => {
     getItems();
@@ -53,7 +47,7 @@ function App() {
         <h1>THE GALLERY</h1>
           <ul>
             <li><a href={"/items/all/"}>ART</a></li>
-            <li><a href={"/events/"}>EVENTS</a></li>
+            <li><a href={"/creators/all/"}>CREATORS</a></li>
           </ul>
       </nav>
       <Routes>
@@ -62,10 +56,10 @@ function App() {
           element={<AllItems items={items} />} />
         <Route
           path="/items/:id"
-          element={<Item handleBid={handleBid}/>}
+          element={<Item />}
         />
         <Route
-          path="/creators/"
+          path="/creators/all/"
           element={<AllCreators creators={creators} />}
         />
         <Route

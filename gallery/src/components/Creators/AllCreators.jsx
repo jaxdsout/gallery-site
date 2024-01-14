@@ -1,12 +1,15 @@
 import React from "react";
-import Creator from './Creator'
 
 function AllCreators({creators}) {
   return (
     <div>
       {creators.map((creator, index) => (
-        <Creator key={index} creator={creator} />
-      ))}
+          <ul>
+            <li>
+              <a href={`/creators/${creator.id}`}>{creator.name}</a>
+            </li>
+          </ul>
+        ))}
     </div>
   )
 }

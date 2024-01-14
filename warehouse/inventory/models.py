@@ -7,11 +7,11 @@ def upload_to(instance, filename):
 
 class Creator(models.Model):
     ROLES = [
-        ('A', 'Artist'),
-        ('D', 'Designer'),
-        ('C', 'Company')
+        ('Artist', 'Artist'),
+        ('Designer', 'Designer'),
+        ('Company', 'Company')
     ]
-    role = models.CharField(max_length=1, choices=ROLES)
+    role = models.CharField(max_length=8, choices=ROLES)
     name = models.CharField(max_length=150)
     about = models.TextField(max_length=1000)
     website = models.URLField(max_length=200)
@@ -23,13 +23,13 @@ class Creator(models.Model):
 
 class Item (models.Model):
     CATEGORIES = [
-        ('PA', 'Painting'),
-        ('WA', 'Wall Art'),
-        ('PR', 'Prints'),
-        ('O', 'Objects'),
-        ('G', 'Goods')
+        ('Painting', 'Painting'),
+        ('Wall Art', 'Wall Art'),
+        ('Prints', 'Prints'),
+        ('Objects', 'Objects'),
+        ('Goods', 'Goods')
     ]
-    category = models.CharField(max_length=2, choices=CATEGORIES)
+    category = models.CharField(max_length=9, choices=CATEGORIES)
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=1000)
     creation_date = models.CharField(max_length=100)
@@ -49,10 +49,7 @@ class Item (models.Model):
 
 class Bid (models.Model):
     amount = models.IntegerField(default=0)
-    bidder = models.CharField(max_length=100)
-    email = models.EmailField()
-    phone_number = models.CharField(max_length=20)
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='bids')
 
     def __str__(self):
-        return f"{self.amount} by {self.bidder}"
+        return f"{self.amount} for {self.item}"

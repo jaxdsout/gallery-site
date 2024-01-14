@@ -20,3 +20,18 @@ class ItemViewSet(viewsets.ModelViewSet):
 class BidViewSet(viewsets.ModelViewSet):
     queryset = Bid.objects.all()
     serializer_class = BidSerializer
+
+    def create(self, request):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        item_id = request.data.get('item')
+
+        item = Item.objects.get(pk=item_id)
+
+        serializer.validated_data['amount'] = item.current_price
+
+        self.perform_create(serializer)
+
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
