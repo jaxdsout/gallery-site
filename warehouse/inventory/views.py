@@ -10,6 +10,7 @@ from .serializers import CreatorSerializer, ItemSerializer, BidSerializer
 
 
 class CreatorViewSet(viewsets.ModelViewSet):
+    permissions_classes = [permissions.IsAuthenticated]
     queryset = Creator.objects.all()
     serializer_class = CreatorSerializer
 
@@ -22,24 +23,16 @@ class ItemViewSet(viewsets.ModelViewSet):
 class BidViewSet(viewsets.ModelViewSet):
     queryset = Bid.objects.all()
     serializer_class = BidSerializer
+    permission_classes = [AllowAny]
 
-
-class MakeBidView (viewsets.ModelViewSet):
-    queryset = Bid.objects.all()
-    serializer_class = BidSerializer
-    permission_classes = [AllowAny]  # Allow any user to create
-
-    def list(self, request, *args, **kwargs):
-        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
-
-    def retrieve(self, request, *args, **kwargs):
-        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
-
-    def update(self, request, *args, **kwargs):
-        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
-
-    def partial_update(self, request, *args, **kwargs):
-        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
-
-    def destroy(self, request, *args, **kwargs):
-        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+    def create(self, request, *args, **kwargs):
+        amount = request.data.get('amount')
+        item = request.data.get('item')
+        if not amount or not item:
+            return Response({'error': 'Amount and Item ID are required'}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            bid = Bid.objects.create(amount=amount, item_id=item)
+            serializer = BidSerializer(bid)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

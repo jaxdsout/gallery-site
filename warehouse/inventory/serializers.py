@@ -41,10 +41,21 @@ class ItemSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 class BidSerializer(serializers.HyperlinkedModelSerializer):
+    item_id = serializers.PrimaryKeyRelatedField(
+        queryset=Item.objects.all(),
+        source='item'
+    )
+    
+    current_bid = serializers.SerializerMethodField()
+
+    def get_current_bid(self, obj):
+        return obj.item.current_price if obj.item else None
+    
     class Meta:
         model = Bid
         fields = (
             'id',
-            'item',
+            'item_id',
             'amount',
+            'current_bid'
         )

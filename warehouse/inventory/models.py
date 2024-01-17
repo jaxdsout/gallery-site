@@ -47,5 +47,11 @@ class Bid (models.Model):
     amount = models.IntegerField(default=0)
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='bids')
 
+    def save(self, *args, **kwargs):
+        self.item.current_price = self.amount
+        self.item.save()
+
+        super(Bid, self).save(*args, **kwargs)
+
     def __str__(self):
         return f"{self.amount} for {self.item}"

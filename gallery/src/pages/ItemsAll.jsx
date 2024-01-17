@@ -1,13 +1,10 @@
+import Item from "./Item";
 
-function AllItems({items}) {
+function AllItems({items, onItemClick}) {
     return (
       <div>
         {items.map((item, index) => (
-          <div>
-            <img style={{ width: '300px' }} src={item.image} alt={item.title}/>
-            <br></br>
-            <a href={`/items/${item.id}`}>{item.title}</a>
-          </div>
+          <Item key={index} item={item} onItemClick={onItemClick}/>
         ))}
       </div>
     )
