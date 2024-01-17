@@ -22,10 +22,10 @@ function Bid({ item }) {
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(newBid)
       }).then(() => {
-        console.log("new bid added")
+        window.history.pushState({}, document.title, window.location.href)
       })
   } else {
-    setBid(item.current_price);
+    // HANDLE ERROR FOR NOT BIDDING ENOUGH
   }
 }
 

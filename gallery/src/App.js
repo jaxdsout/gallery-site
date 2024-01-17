@@ -3,9 +3,11 @@ import AllItems from './pages/ItemsAll'
 import Item from './pages/ItemDetail'
 import Creator from './pages/CreatorDetail'
 import AllCreators from './pages/CreatorsAll'
-import Header from './components/Header';
-import axios from 'axios';
+import Header from './partials/Header';
+import Footer from './partials/Footer';
+import Home from './pages/Home';
 
+import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {Route, Routes, useNavigate} from 'react-router-dom'
 
@@ -50,8 +52,14 @@ function App() {
     <div>
       <Header />
       <Routes>
+        <Route
+          path="/"
+          element={<Home 
+            items={items}
+        />}>
+        </Route>
         <Route 
-          exact path="/items/all/" 
+          path="/items/all/" 
           element={<AllItems 
             items={items}
             onItemClick={handleItemClick}
@@ -69,6 +77,7 @@ function App() {
           element={<Creator creators={creators} items={items} />}
         />
       </Routes>
+      <Footer />
     </div>
 
   );

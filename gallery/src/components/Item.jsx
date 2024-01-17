@@ -1,3 +1,5 @@
+import './components.css'
+
 function Item ({ item, onItemClick }) {
     
     const handleClick = () => {
@@ -6,7 +8,7 @@ function Item ({ item, onItemClick }) {
   
     return (
       item.image ? (
-        <div>
+        <div className="item_image">
           <img
             src={item.image} 
             alt={item.title}
