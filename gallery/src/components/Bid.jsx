@@ -1,9 +1,12 @@
 
 import { useState } from "react";
+import PreviousBids from "../pages/PreviousBids";
+
 const API_url = 'http://localhost:8000/inventory'
 
 function Bid({ item }) {
   const [bid, setBid] = useState(item.current_price);
+  const [prevBids, setPrevBids] = useState(false)
   
   const makeBid = (e) => {
     e.preventDefault();
@@ -22,8 +25,12 @@ function Bid({ item }) {
         console.log("new bid added")
       })
   } else {
-    console.log("not enough sheckels")
+    setBid(item.current_price);
   }
+}
+
+const togglePrevBids = () => {
+  setPrevBids(!prevBids)
 }
     return (
       <div>
@@ -36,7 +43,8 @@ function Bid({ item }) {
           />
           <button type="submit">MAKE BID</button>
         </form>
-        <button>PREVIOUS BIDS</button>
+        <button onClick={togglePrevBids}>PREVIOUS BIDS</button>
+        {prevBids && <PreviousBids item={item}/>}
       </div>
     );
 }

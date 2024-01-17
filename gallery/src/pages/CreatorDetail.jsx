@@ -15,11 +15,15 @@ function Creator ({creators, items}) {
               <li>{creator.role}</li>
               <li>{creator.about}</li>
           </ul>
-
+          <h3> LIST OF ITEMS: </h3>
           <ul>
             {creator_items.map((item, index) => (
               <li key={index}><a href={`/items/${item.id}`}>
-                 {item.title}
+                <img
+                  src={item.image} 
+                  alt={item.title}
+                  style={{ width: '300px' }}
+                />
               </a></li>
           ))}
           </ul>
