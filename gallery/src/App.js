@@ -3,7 +3,7 @@ import AllItems from './pages/ItemsAll'
 import Item from './pages/ItemDetail'
 import Creator from './pages/CreatorDetail'
 import AllCreators from './pages/CreatorsAll'
-import Bid from './components/Bid';
+import Header from './components/Header';
 import axios from 'axios';
 
 import React, {useState, useEffect} from 'react';
@@ -48,13 +48,7 @@ function App() {
 
   return (
     <div>
-      <nav>
-        <h1>THE GALLERY</h1>
-          <ul>
-            <li><a href={"/items/all/"}>ART</a></li>
-            <li><a href={"/creators/all/"}>CREATORS</a></li>
-          </ul>
-      </nav>
+      <Header />
       <Routes>
         <Route 
           exact path="/items/all/" 
