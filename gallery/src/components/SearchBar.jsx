@@ -1,9 +1,9 @@
 import "./components.css"
 import { useState } from "react"
 
-function SearchBar () {
-    const [filters, setFilters] = useState(false)
-
+function SearchBar ({ searchString, handleSearch, handleSubmit }) {
+    const [filters, setFilters] = useState(false);
+    
     const triggerFilters = () => {
         setFilters(!filters)
     }
@@ -11,11 +11,18 @@ function SearchBar () {
     return (
         <div>
             <div className="search">
-                <input className="search_input" type="search" />
+                <input 
+                    className="search_input" 
+                    type="search" 
+                    placeholder="search..."
+                    value={searchString}
+                    onChange={handleSearch}
+                    onKeyDown={handleSubmit}
+                />
                 <button className="filter_btn" onClick={triggerFilters}>
                 FILTER
                 </button>
-                <button className="search_btn" type="submit">
+                <button className="search_btn" type="submit" onClick={handleSubmit}>
                 SEARCH
                 </button>
             </div>

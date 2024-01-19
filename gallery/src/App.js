@@ -13,7 +13,7 @@ import Footer from './partials/Footer';
 import Home from './pages/Home';
 
 import axios from 'axios';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {Route, Routes, useNavigate} from 'react-router-dom'
 
 const API_url = 'http://localhost:8000/inventory'
@@ -21,10 +21,9 @@ const API_url = 'http://localhost:8000/inventory'
 function App() {
   const [items, setItems] = useState([]);
   const [creators, setCreators] = useState([]);
-  const [events, setEvents] = useState([])
-  const [results, setResults] = useState([])
-  const navigate = useNavigate();
+  const [events, setEvents] = useState([]);
 
+  const navigate = useNavigate();
 
   function handleItemClick(item) {
     navigate(`/items/${item.id}`)
@@ -87,13 +86,17 @@ function App() {
               onItemClick={handleItemClick}
             />} 
         />
+         <Route 
+          path="/items/all/search/:userSearch" 
+          element={
+            <AllItems 
+              items={items}
+              onItemClick={handleItemClick}
+            />} 
+        />
         <Route
           path="/items/:id/"
           element={<ItemDetail items={items}/>}
-        />
-        <Route
-          path="/items/search/"
-          element={<ItemSearch results={results}/>}
         />
         <Route
           path="/items/featured/"

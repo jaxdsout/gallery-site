@@ -8,6 +8,7 @@ const API_url = 'http://localhost:8000/inventory'
 function Bid({ item }) {
   const [bid, setBid] = useState(item.current_price);
   const [prevBids, setPrevBids] = useState(false)
+  const [lowBid, setLowBid] = useState(false)
   
   const makeBid = (e) => {
     e.preventDefault();
@@ -26,7 +27,7 @@ function Bid({ item }) {
         console.log(error)
       });
     } else {
-      // HANDLE ERROR FOR NOT BIDDING ENOUGH
+      setLowBid(!lowBid)
     }
   }
 
@@ -44,6 +45,11 @@ function Bid({ item }) {
           onChange={(event) => setBid(event.target.value)}
         />
         <button type="submit">MAKE BID</button>
+        {lowBid && 
+          <div>
+            <p> YOU NEED TO BID MORE </p>
+          </div>}
+
       </form>
       <button onClick={togglePrevBids}>PREVIOUS BIDS</button>
       {prevBids && <PreviousBids item={item}/>}

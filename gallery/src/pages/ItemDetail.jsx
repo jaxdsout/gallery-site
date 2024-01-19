@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Bid from "../components/Bid";
 import "./pages.css"
 
@@ -10,6 +10,9 @@ function ItemDetail ({items}) {
     return (
       item ? (
         <div className="item_detail">
+          <div>
+            <Link to={"/items/all/"}><button>BACK</button></Link>
+          </div>
           <img style={{ width: '300px' }} src={item.image} alt={item.title}/>
           <div>
             <h3>CURRENT PRICE: <b>$ {item.current_price}</b></h3>
