@@ -1,4 +1,5 @@
 import './partials.css';
+import { Link } from 'react-router-dom';
 
 function Footer () {
     const email = 'info@thegallery.com';
@@ -18,9 +19,9 @@ function Footer () {
                     <p> 4411 Montrose Boulevard, Suite A, Houston, Texas 77006 </p>
                     <p><a href={`mailto:${email}`}>Email Us</a></p>
                     <p><a href={`tel:${tele}`}>Call Us</a></p>
-                    <a href="http://www.instagram.com/thegallerythegallery/">
+                    <Link to={"http://www.instagram.com/thegallerythegallerythegallery/"}>
                         <img className='iglogo' src="https://i.imgur.com/SILGJAg.png" alt="ig logo" />
-                    </a>                
+                    </Link>
                 </div>
                 <div className='hours'>
                     <h2> HOURS </h2>

@@ -55,3 +55,15 @@ class Bid (models.Model):
 
     def __str__(self):
         return f"{self.amount} for {self.item}"
+    
+
+class Event (models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField(max_length=1000)
+    poster = models.ImageField(upload_to=upload_to, default='default.jpg', null=True, blank=True)
+    time = models.DateTimeField()
+    creator = models.ForeignKey(Creator, on_delete=models.CASCADE, related_name='events', null=True, blank=True)
+
+
+    def __str__(self):
+        return self.title

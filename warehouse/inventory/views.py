@@ -5,8 +5,8 @@ from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FormParser
 
 
-from .models import Creator, Item, Bid
-from .serializers import CreatorSerializer, ItemSerializer, BidSerializer
+from .models import Creator, Item, Bid, Event
+from .serializers import CreatorSerializer, ItemSerializer, BidSerializer, EventSerializer
 
 
 class CreatorViewSet(viewsets.ModelViewSet):
@@ -23,6 +23,11 @@ class ItemViewSet(viewsets.ModelViewSet):
 class BidViewSet(viewsets.ModelViewSet):
     queryset = Bid.objects.all()
     serializer_class = BidSerializer
+    permissions_classes = [permissions.IsAuthenticated]
+        
+class MakeBidViewSet(viewsets.ModelViewSet):
+    queryset = Bid.objects.all()
+    serializer_class = BidSerializer
     permission_classes = [AllowAny]
 
     def create(self, request, *args, **kwargs):
@@ -36,3 +41,9 @@ class BidViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+class EventViewSet(viewsets.ModelViewSet):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    permissions_classes = [permissions.IsAuthenticated]
+    parser_classes = [MultiPartParser, FormParser]

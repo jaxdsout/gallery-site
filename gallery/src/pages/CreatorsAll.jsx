@@ -1,15 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function CreatorsAll({creators}) {
   return (
     <div>
-      {creators.map((creator, index) => (
-          <ul>
-            <li>
-              <a href={`/creators/${creator.id}`}>{creator.name}</a>
-            </li>
-          </ul>
-        ))}
+      <h3>CREATORS</h3>
+      {creators.map((creator) => (
+        <ul key={creator.id}>
+          <li>
+            <Link to={`/creators/${creator.id}`}>{creator.name}</Link>
+          </li>
+        </ul>
+      ))}
     </div>
   )
 }

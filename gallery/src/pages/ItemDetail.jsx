@@ -3,10 +3,10 @@ import Bid from "../components/Bid";
 import "./pages.css"
 
 
-function Item ({items}) {
+function ItemDetail ({items}) {
   const { id } = useParams()
   const item = items.find(item => item.id === parseInt(id))
-  console.log(item.creator)
+  
     return (
       item ? (
         <div className="item_detail">
@@ -16,7 +16,7 @@ function Item ({items}) {
             <Bid item={item}/>
             <ul>
               <h4>{item.title}</h4>
-              <li>{item.creator.name}</li>
+              <li>by {item.creator.name}</li>
               <li>{item.creation_date}</li>
               <li>{item.description}</li>
               <li>{item.dimensions}</li>
@@ -28,4 +28,4 @@ function Item ({items}) {
     );
 }
 
-export default Item
+export default ItemDetail

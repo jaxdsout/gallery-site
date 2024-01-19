@@ -1,8 +1,12 @@
 import './App.css';
 import AllItems from './pages/ItemsAll'
-import Item from './pages/ItemDetail'
+import ItemDetail from './pages/ItemDetail'
+import FeaturedItems from './pages/ItemsFeatured'
+
 import Creator from './pages/CreatorDetail'
 import AllCreators from './pages/CreatorsAll'
+
+import AllEvents from './pages/EventsAll';
 import Header from './partials/Header';
 import Footer from './partials/Footer';
 import Home from './pages/Home';
@@ -16,7 +20,9 @@ const API_url = 'http://localhost:8000/inventory'
 function App() {
   const [items, setItems] = useState([]);
   const [creators, setCreators] = useState([]);
-  const navigate = useNavigate()
+  const [events, setEvents] = useState([])
+  const navigate = useNavigate();
+
 
   function handleItemClick(item) {
     navigate(`/items/${item.id}`)
@@ -42,11 +48,27 @@ function App() {
     }
   }
 
+  async function getEvents() {
+    try {
+      const response = await axios.get(`${API_url}/events/`);
+      const data = response.data;
+      setEvents(data);
+    } catch (error) {
+      console.error('Error fetching creators', error);
+    }
+  }
+
   useEffect(() => {
     getItems();
     getCreators();
+    getEvents()
   }, []);
 
+  // useEffect(() => {
+  //   if (window.location.pathname === '/creators/all/') {
+  //     getCreators();
+  //   }
+  // }, []);
 
   return (
     <div>
@@ -54,27 +76,44 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Home 
-            items={items}
-        />}>
+          element={
+            <Home 
+              items={items}
+              events={events}
+            />
+          }>
         </Route>
         <Route 
           path="/items/all/" 
-          element={<AllItems 
-            items={items}
-            onItemClick={handleItemClick}
-             />} />
+          element={
+            <AllItems 
+              items={items}
+              onItemClick={handleItemClick}
+            />} 
+        />
         <Route
-          path="/items/:id"
-          element={<Item items={items}/>}
+          path="/items/:id/"
+          element={<ItemDetail items={items}/>}
+        />
+        <Route
+          path="/items/featured/"
+          element={<FeaturedItems items={items}/>}
         />
         <Route
           path="/creators/all/"
           element={<AllCreators creators={creators} />}
         />
         <Route
-          path="/creators/:id"
-          element={<Creator creators={creators} items={items} />}
+          path="/creators/:id/"
+          element={
+            <Creator 
+              items={items} 
+              creators={creators}
+            />}
+        />
+        <Route
+          path="/events/"
+          element={<AllEvents events={events} />}
         />
       </Routes>
       <Footer />

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Creator, Item, Bid
+from .models import Creator, Item, Bid, Event
 
 class CreatorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -15,10 +15,7 @@ class CreatorSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class ItemSerializer(serializers.HyperlinkedModelSerializer):
-    creator_id = serializers.PrimaryKeyRelatedField(
-        queryset=Creator.objects.all(),
-        source='creator'
-    )
+    creator = CreatorSerializer()
 
     class Meta:
         model = Item
@@ -27,7 +24,6 @@ class ItemSerializer(serializers.HyperlinkedModelSerializer):
             'category',
             'title',
             'creator',
-            'creator_id',
             'description',
             'creation_date',
             'materials_used',
@@ -47,7 +43,6 @@ class BidSerializer(serializers.HyperlinkedModelSerializer):
     )
     
     current_bid = serializers.SerializerMethodField()
-
     def get_current_bid(self, obj):
         return obj.item.current_price if obj.item else None
     
@@ -58,4 +53,18 @@ class BidSerializer(serializers.HyperlinkedModelSerializer):
             'item_id',
             'amount',
             'current_bid'
+        )
+
+class EventSerializer(serializers.HyperlinkedModelSerializer):
+    creator = CreatorSerializer()
+
+    class Meta:
+        model = Event
+        fields = (
+            'id',
+            'title',
+            'description',
+            'poster',
+            'time',
+            'creator'
         )
