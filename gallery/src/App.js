@@ -1,7 +1,8 @@
 import './App.css';
 import AllItems from './pages/ItemsAll'
 import ItemDetail from './pages/ItemDetail'
-import FeaturedItems from './pages/ItemsFeatured'
+import FeaturedItems from './pages/ItemFeatured'
+import ItemSearch from './pages/ItemSearch';
 
 import Creator from './pages/CreatorDetail'
 import AllCreators from './pages/CreatorsAll'
@@ -21,6 +22,7 @@ function App() {
   const [items, setItems] = useState([]);
   const [creators, setCreators] = useState([]);
   const [events, setEvents] = useState([])
+  const [results, setResults] = useState([])
   const navigate = useNavigate();
 
 
@@ -64,12 +66,6 @@ function App() {
     getEvents()
   }, []);
 
-  // useEffect(() => {
-  //   if (window.location.pathname === '/creators/all/') {
-  //     getCreators();
-  //   }
-  // }, []);
-
   return (
     <div>
       <Header />
@@ -94,6 +90,10 @@ function App() {
         <Route
           path="/items/:id/"
           element={<ItemDetail items={items}/>}
+        />
+        <Route
+          path="/items/search/"
+          element={<ItemSearch results={results}/>}
         />
         <Route
           path="/items/featured/"

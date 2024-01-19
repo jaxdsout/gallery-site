@@ -1,7 +1,7 @@
 from rest_framework import viewsets, permissions
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, filters
 from rest_framework.parsers import MultiPartParser, FormParser
 
 
@@ -10,20 +10,22 @@ from .serializers import CreatorSerializer, ItemSerializer, BidSerializer, Event
 
 
 class CreatorViewSet(viewsets.ModelViewSet):
-    permissions_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
     queryset = Creator.objects.all()
     serializer_class = CreatorSerializer
 
 class ItemViewSet(viewsets.ModelViewSet):
-    permissions_classes = [permissions.IsAuthenticated]
+    permission_classes = [AllowAny]
     parser_classes = [MultiPartParser, FormParser]
+    search_fields = ['category','title', 'materials_used', 'creator__name']
+    filter_backends = (filters.SearchFilter,)
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
 
 class BidViewSet(viewsets.ModelViewSet):
     queryset = Bid.objects.all()
     serializer_class = BidSerializer
-    permissions_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
         
 class MakeBidViewSet(viewsets.ModelViewSet):
     queryset = Bid.objects.all()
