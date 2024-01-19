@@ -2,7 +2,6 @@ import './App.css';
 import AllItems from './pages/ItemsAll'
 import ItemDetail from './pages/ItemDetail'
 import FeaturedItems from './pages/ItemFeatured'
-import ItemSearch from './pages/ItemSearch';
 
 import Creator from './pages/CreatorDetail'
 import AllCreators from './pages/CreatorsAll'
@@ -19,11 +18,38 @@ import {Route, Routes, useNavigate} from 'react-router-dom'
 const API_url = 'http://localhost:8000/inventory'
 
 function App() {
+  const navigate = useNavigate();
+
   const [items, setItems] = useState([]);
   const [creators, setCreators] = useState([]);
   const [events, setEvents] = useState([]);
+  const [results, setResults] = useState([]);
+  const [searchString, setSearchString] = useState('');
 
-  const navigate = useNavigate();
+  function handleSearch (event) {
+    setSearchString(event.target.value)
+  }
+
+  function handleSubmit (event) { 
+    if (event.key === 'Enter' || event.type === 'click') {
+      if (searchString.length > 0) {
+        searchItems(searchString)
+      }
+    }
+  }
+
+  const searchItems = useCallback((searchString) => {
+  const userSearch = encodeURIComponent(searchString)
+  const url = `${API_url}/items/?search=${userSearch}`;
+  axios.get(url)
+      .then((res) => {
+      setResults(res.data)
+      console.log(results)
+      })
+      .catch((error) => {
+      console.error(error)
+      })
+  }, [navigate])
 
   function handleItemClick(item) {
     navigate(`/items/${item.id}`)
@@ -83,15 +109,11 @@ function App() {
           element={
             <AllItems 
               items={items}
+              results={results}
               onItemClick={handleItemClick}
-            />} 
-        />
-         <Route 
-          path="/items/all/search/:userSearch" 
-          element={
-            <AllItems 
-              items={items}
-              onItemClick={handleItemClick}
+              searchString={searchString} 
+              handleSearch={handleSearch}
+              handleSubmit={handleSubmit}
             />} 
         />
         <Route
