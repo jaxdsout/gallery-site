@@ -9,19 +9,18 @@ function Footer () {
                 <div className='skeleton'>
                     <h3>THE GALLERY</h3>
                         <ul>
-                            <li><a href={"/items/all/"}>ART</a></li>
-                            <li><a href={"/creators/all/"}>CREATORS</a></li>
-                            <li><a href={"/events/"}>EVENTS</a></li>
+                            <li><Link to={"/items/all/"}>ART</Link></li>
+                            <li><Link to={"/creators/all/"}>CREATORS</Link></li>
+                            <li><Link to={"/events/"}>EVENTS</Link></li>
                         </ul> 
                 </div>
                 <div className='contact_info'>
                     <h2> GET IN TOUCH </h2>
                     <p> 4411 Montrose Boulevard, Suite A, Houston, Texas 77006 </p>
-                    <p><a href={`mailto:${email}`}>Email Us</a></p>
-                    <p><a href={`tel:${tele}`}>Call Us</a></p>
+                    <Link to={`mailto:${email}`}><p>Email Us</p></Link>
+                    <Link to={`tel:${tele}`}><p>Call Us</p></Link>
                     <Link to={"http://www.instagram.com/thegallerythegallerythegallery/"}>
-                        <img className='iglogo' src="https://i.imgur.com/SILGJAg.png" alt="ig logo" />
-                    </Link>
+                        <img className='iglogo' src="https://i.imgur.com/SILGJAg.png" alt="ig logo" /></Link>
                 </div>
                 <div className='hours'>
                     <h2> HOURS </h2>

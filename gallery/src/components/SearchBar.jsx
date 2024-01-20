@@ -1,5 +1,6 @@
 import "./components.css"
 import { useState } from "react"
+import Filters from "./Filters";
 
 function SearchBar ({ results, searchString, handleSearch, handleSubmit }) {
     const [filters, setFilters] = useState(false);
@@ -32,7 +33,7 @@ function SearchBar ({ results, searchString, handleSearch, handleSubmit }) {
                    </a>
                     ) : null }
             </div>
-            { filters && <div><p> filters </p></div>}
+            { filters && <Filters />}
         </div>
        
     )

@@ -10,7 +10,7 @@ from .serializers import CreatorSerializer, ItemSerializer, BidSerializer, Event
 
 
 class CreatorViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [AllowAny]
     queryset = Creator.objects.all()
     serializer_class = CreatorSerializer
 

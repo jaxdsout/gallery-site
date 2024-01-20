@@ -19,7 +19,7 @@ function ItemDetail ({items}) {
             <Bid item={item}/>
             <ul>
               <h4>{item.title}</h4>
-              <li>by {item.creator.name}</li>
+              <li>by <Link to={`/creators/${item.creator_id}`}>{item.creator_name}</Link></li>
               <li>{item.creation_date}</li>
               <li>{item.description}</li>
               <li>{item.dimensions}</li>

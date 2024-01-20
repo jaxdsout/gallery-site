@@ -17,6 +17,11 @@ class CreatorSerializer(serializers.HyperlinkedModelSerializer):
 class ItemSerializer(serializers.HyperlinkedModelSerializer):
     creator_name = serializers.SerializerMethodField()
 
+    creator_id = serializers.PrimaryKeyRelatedField(
+        queryset=Creator.objects.all(),
+        source='creator'
+    )
+
     class Meta:
         model = Item
         fields = (
@@ -24,7 +29,7 @@ class ItemSerializer(serializers.HyperlinkedModelSerializer):
             'category',
             'title',
             'creator_name',
-            'creator',
+            'creator_id',
             'description',
             'creation_date',
             'materials_used',

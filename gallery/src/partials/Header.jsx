@@ -1,14 +1,15 @@
 import './partials.css';
+import { Link } from 'react-router-dom';
 
 function Header () {
 
     return (
         <div>
             <nav className='navbar'>
-                <h1 class="logo"><a href={"/"}>THE GALLERY</a></h1>
+                <Link to={"/"}><h1 class="logo">THE GALLERY</h1></Link>
                 <div className='buttons'>
-                    <button><a href={"/items/all/"}>ART</a></button>
-                    <button><a href={"/events/"}>EVENTS</a></button>
+                    <Link to={"/items/all/"}><button>ART</button></Link>
+                    <Link to={"/events/"}><button>EVENTS</button></Link>
                 </div>
             </nav>
         </div>

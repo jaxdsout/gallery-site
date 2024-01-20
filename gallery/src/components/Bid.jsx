@@ -52,7 +52,14 @@ function Bid({ item }) {
 
       </form>
       <button onClick={togglePrevBids}>PREVIOUS BIDS</button>
-      {prevBids && <PreviousBids item={item}/>}
+      {prevBids && 
+        <PreviousBids item={item}/>
+       }
+       {prevBids && item.bids.length === 0 &&
+         <div>
+          <p> NO BIDS YET. BE THE FIRST. </p>
+          </div>
+       }
     </div>
   );
 }
