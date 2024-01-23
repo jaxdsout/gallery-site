@@ -1,20 +1,56 @@
-.item_image {
-    margin-left: 2rem;
-}
+/* SEARCH BAR */
 
 .search {
     display: flex;
     flex-direction: row;
-    width: 65rem;
+    width: 60%;
+    margin-left: 30rem;
+    margin-bottom: 3rem;
 }
 
 .search_btn {
     margin-left: 1rem;
+    border: gray solid 2px;
+    font-weight: 600 !important;
+    letter-spacing: 0.2rem;
 }
 
-.filter_btn {
-    margin-left: 1rem;
+.search_btn:hover {
+    border: white solid 2px;
 }
+
+.search_input:focus {
+    border: white solid 2px !important;
+}
+
+
+
+/* ITEM */
+
+.item_image {
+    margin-left: 2rem;
+    position: relative;
+}
+
+.item_image:hover {
+    opacity: 30%;
+}
+
+.current_price {
+    position: absolute;
+    top: 35%;
+    left: 35%;
+    font-weight: 800;
+    font-size: 2rem;
+    color: white;
+}
+
+.current_price:hover {
+    opacity: 100%;
+}
+
+/* PREVIOUS BIDS */
+
 
 .previous_bids {
     overflow-y: scroll;

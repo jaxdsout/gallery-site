@@ -5,7 +5,7 @@ import "./pages.css"
 function AllItems({items, results, onItemClick, searchString, handleSearch, handleSubmit }) {
 
     return (
-      <div>
+      <div className="items_all">
         <SearchBar 
           searchString={searchString} 
           handleSearch={handleSearch}

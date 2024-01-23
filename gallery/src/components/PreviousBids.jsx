@@ -6,7 +6,7 @@ function PreviousBids ({ item }) {
     return (
         <div className="previous_bids">
             {bids.map((bid, index) => (
-                <div className="previous_bid_detail" key={index}>
+                <div className="nav_items" key={index}>
                     <p>Amount: {bid.amount}</p>
                     <p>bid date: </p>
                 </div>

@@ -44,14 +44,14 @@ function Bid({ item }) {
           value={bid}
           onChange={(event) => setBid(event.target.value)}
         />
-        <button type="submit">MAKE BID</button>
+        <button className="nav_button" type="submit">MAKE BID</button>
         {lowBid && 
           <div>
             <p> YOU NEED TO BID MORE </p>
           </div>}
 
       </form>
-      <button onClick={togglePrevBids}>PREVIOUS BIDS</button>
+      <button className="nav_button" onClick={togglePrevBids}>PREVIOUS BIDS</button>
       {prevBids && 
         <PreviousBids item={item}/>
        }

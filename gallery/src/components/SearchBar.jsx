@@ -1,14 +1,6 @@
 import "./components.css"
-import { useState } from "react"
-import Filters from "./Filters";
 
-function SearchBar ({ results, searchString, handleSearch, handleSubmit }) {
-    const [filters, setFilters] = useState(false);
-    
-    const triggerFilters = () => {
-        setFilters(!filters)
-    }
-
+function SearchBar ({ results, searchString, handleSearch, handleSubmit })  {
     return (
         <div>
             <div className="search">
@@ -21,9 +13,6 @@ function SearchBar ({ results, searchString, handleSearch, handleSubmit }) {
                     onKeyDown={handleSubmit}
                     required
                 />
-                <button className="filter_btn" onClick={triggerFilters}>
-                FILTER
-                </button>
                 <button className="search_btn" onClick={handleSubmit}>
                 SEARCH
                 </button>
@@ -33,7 +22,6 @@ function SearchBar ({ results, searchString, handleSearch, handleSubmit }) {
                    </a>
                     ) : null }
             </div>
-            { filters && <Filters />}
         </div>
        
     )
