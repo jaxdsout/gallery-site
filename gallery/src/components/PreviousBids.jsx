@@ -4,12 +4,12 @@ function PreviousBids ({ item }) {
     const bids = item.bids;
     console.log(bids)
     return (
-        <div>
+        <div className="previous_bids">
             {bids.map((bid, index) => (
-                <ul key={index}>
-                    <li>Amount: {bid.amount}</li>
-                    <li>bid date: </li>
-                </ul>
+                <div className="previous_bid_detail" key={index}>
+                    <p>Amount: {bid.amount}</p>
+                    <p>bid date: </p>
+                </div>
             ))}
         </div>
     )

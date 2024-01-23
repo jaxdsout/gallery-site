@@ -13,18 +13,20 @@ function ItemDetail ({items}) {
           <div>
             <Link to={"/items/all/"}><button>BACK</button></Link>
           </div>
-          <img style={{ width: '300px' }} src={item.image} alt={item.title}/>
+          <img className="item_detail_image" src={item.image} alt={item.title}/>
           <div>
             <h3>CURRENT PRICE: <b>$ {item.current_price}</b></h3>
             <Bid item={item}/>
-            <ul>
+            <div>
               <h4>{item.title}</h4>
-              <li>by <Link to={`/creators/${item.creator_id}`}>{item.creator_name}</Link></li>
-              <li>{item.creation_date}</li>
-              <li>{item.description}</li>
-              <li>{item.dimensions}</li>
-              <li>{item.materials_used}</li>
-            </ul>
+              <h6><Link to={`/creators/${item.creator_id}`}>{item.creator_name}</Link></h6>
+              <ul>
+                <li>{item.creation_date}</li>
+                <li>{item.description}</li>
+                <li>{item.dimensions}</li>
+                <li>{item.materials_used}</li>
+              </ul>
+            </div>
           </div>
         </div>
       ) : null

@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import './pages.css'
 
 function Creator ({creators, items}) {
   const { id } = useParams()
@@ -10,23 +11,26 @@ function Creator ({creators, items}) {
   return (
     creator ? (
       <div>
-          <ul>
-              <li>{creator.name}</li>
-              <li>{creator.role}</li>
-              <li>{creator.about}</li>
-          </ul>
+          <h3 className="creator_header">{creator.role}</h3>
+          <div>
+            <h5 className="creator_name">{creator.name}</h5>
+            <p>{creator.about}</p>
+          </div>
           <h3> LIST OF ITEMS: </h3>
-          <ul>
+          <div className="creator_items">
             {creator_items.map((item, index) => (
-              <li key={index}><Link to={`/items/${item.id}`}>
+              <div key={index}><Link to={`/items/${item.id}`}>
                 <img
                   src={item.image} 
                   alt={item.title}
                   style={{ width: '300px' }}
+                  className="creator_item_image"
                 />
-              </Link></li>
+              </Link>
+              </div>
           ))}
-          </ul>
+          </div>
+         
       </div>
     ) : null
   );

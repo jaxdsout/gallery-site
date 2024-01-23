@@ -15,3 +15,13 @@
 .filter_btn {
     margin-left: 1rem;
 }
+
+.previous_bids {
+    overflow-y: scroll;
+    height: 20rem;
+    background-color: antiquewhite;
+}
+
+.previous_bid_detail {
+    padding: 30rem auto !important;
+}

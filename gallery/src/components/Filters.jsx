@@ -2,8 +2,13 @@ function Filters () {
 
     return (
         <div>
-            <p>placeholder</p>
             <form>
+                <input type="radio" value='category' />
+                <label for="category">CATEGORY</label>
+                <input type="radio" value='category' />
+                <label for="category">CREATOR</label>
+                <input type="radio" value='category' />
+                <label for="category">CATEGORY</label>
                 <input type="radio" value='category' />
                 <label for="category">CATEGORY</label>
             </form>
