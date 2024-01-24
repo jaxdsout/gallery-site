@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class Creator(models.Model):
     ROLES = [
@@ -29,11 +30,11 @@ class Item (models.Model):
     category = models.CharField(max_length=9, choices=CATEGORIES)
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=1000)
-    creation_date = models.CharField(max_length=100)
     materials_used = models.CharField(max_length=200)
+    creation_period = models.CharField(max_length=200)
     dimensions = models.CharField(max_length=150)
-    listing_start = models.DateField()
-    listing_end = models.DateField()
+    listing_start = models.DateField(blank=True)
+    listing_end = models.DateField(blank=True)
     current_price = models.IntegerField(default=0)
     starting_price = models.IntegerField(default=1)
     image = models.ImageField(upload_to=upload_to, default='default.jpg', null=True, blank=True)
@@ -46,6 +47,7 @@ class Item (models.Model):
 class Bid (models.Model):
     amount = models.IntegerField(default=0)
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='bids')
+    time = models.DateTimeField(default=timezone.now)
 
     def save(self, *args, **kwargs):
         self.item.current_price = self.amount
@@ -61,7 +63,7 @@ class Event (models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(max_length=1000)
     poster = models.ImageField(upload_to=upload_to, default='default.jpg', null=True, blank=True)
-    time = models.DateTimeField()
+    time = models.DateTimeField(blank=True)
     creator = models.ForeignKey(Creator, on_delete=models.CASCADE, related_name='events', null=True, blank=True)
 
 

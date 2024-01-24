@@ -10,12 +10,10 @@ from .serializers import CreatorSerializer, ItemSerializer, BidSerializer, Event
 
 
 class CreatorViewSet(viewsets.ModelViewSet):
-    permission_classes = [AllowAny]
     queryset = Creator.objects.all()
     serializer_class = CreatorSerializer
 
 class ItemViewSet(viewsets.ModelViewSet):
-    permission_classes = [AllowAny]
     parser_classes = [MultiPartParser, FormParser]
     search_fields = ['category','title', 'materials_used', 'creator__name']
     filter_backends = (filters.SearchFilter,)

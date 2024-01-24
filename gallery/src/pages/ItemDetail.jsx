@@ -15,18 +15,16 @@ function ItemDetail ({items}) {
           </div>
           <img className="item_detail_image" src={item.image} alt={item.title}/>
           <div>
-            <h3>CURRENT PRICE: <b>$ {item.current_price}</b></h3>
-            <Bid item={item}/>
-            <div>
-              <h4>"{item.title}"</h4>
-              <h6><Link to={`/creators/${item.creator_id}`}>{item.creator_name}</Link></h6>
-              <ul>
+              <h3 className="item_title">"{item.title}"</h3>
+              <h3 className="creator_name itemz"><Link to={`/creators/${item.creator_id}`}>{item.creator_name}</Link></h3>
+              <ul className="item_descriptions">
                 <li>{item.creation_date}</li>
                 <li>{item.description}</li>
                 <li>{item.dimensions}</li>
                 <li>{item.materials_used}</li>
               </ul>
-            </div>
+              <h3 className="current_price_item">CURRENT PRICE: <span className="dollas">$ {item.current_price}</span></h3>
+              <Bid item={item}/>
           </div>
         </div>
       ) : null

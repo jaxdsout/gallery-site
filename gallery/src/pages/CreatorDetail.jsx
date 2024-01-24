@@ -12,11 +12,11 @@ function Creator ({creators, items}) {
     creator ? (
       <div>
           <h3 className="creator_header">{creator.role}</h3>
-          <div>
+          <div className="creator_details">
             <h5 className="creator_name">{creator.name}</h5>
             <p>{creator.about}</p>
           </div>
-          <h3> LIST OF ITEMS: </h3>
+          <h3 className="creator_header list"> LIST OF ITEMS: </h3>
           <div className="creator_items">
             {creator_items.map((item, index) => (
               <div key={index}><Link to={`/items/${item.id}`}>

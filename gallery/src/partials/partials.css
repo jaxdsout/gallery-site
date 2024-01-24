@@ -7,7 +7,7 @@
     position: sticky;
     width: 100%;
     top: 0;
-    margin-bottom: 3rem;
+    margin-bottom: 0rem;
     box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.376);
 }
 
@@ -76,7 +76,8 @@
     flex-shrink: 0;
     justify-content: space-evenly;
     padding: 3.25rem;
-    margin-top: auto;
+    margin-top: 2rem;
+    box-shadow: -2px -4px 4px rgba(0, 0, 0, 0.507);
 }
 
 

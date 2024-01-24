@@ -36,32 +36,32 @@ function Bid({ item }) {
   }
   
   return (
-    <div>
-      <form onSubmit={makeBid}>
-        <input
-          type="number"
-          placeholder="Enter Bid Amount"
-          value={bid}
-          onChange={(event) => setBid(event.target.value)}
-        />
-        <button className="nav_button" type="submit">MAKE BID</button>
+    <div className="bid_component">
+      <div className="bid_form">
+        <form onSubmit={makeBid}>
+          <input
+            type="number"
+            value={bid}
+            className="bid_input"
+            onChange={(event) => setBid(event.target.value)}
+          />
+          <button className="nav_button make_bid" type="submit">MAKE BID</button>
+        </form>
         {lowBid && 
-          <div>
-            <p> YOU NEED TO BID MORE </p>
-          </div>}
-
-      </form>
-      <button className="nav_button" onClick={togglePrevBids}>PREVIOUS BIDS</button>
-      {prevBids && 
-        <PreviousBids item={item}/>
-       }
-       {prevBids && item.bids.length === 0 &&
-         <div>
+        <p> YOU NEED TO BID MORE </p>
+      }
+      </div>
+      <div className="bid_responses">
+        <button className="nav_button" onClick={togglePrevBids}>PREVIOUS BIDS</button>
+        {prevBids && item.bids.length === 0 &&
           <p> NO BIDS YET. BE THE FIRST. </p>
-          </div>
-       }
+        }
+        {prevBids && 
+          <PreviousBids item={item}/>
+        }
+      </div>
     </div>
-  );
+  )
 }
 
 export default Bid;

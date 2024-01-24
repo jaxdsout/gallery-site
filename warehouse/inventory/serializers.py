@@ -31,7 +31,7 @@ class ItemSerializer(serializers.HyperlinkedModelSerializer):
             'creator_name',
             'creator_id',
             'description',
-            'creation_date',
+            'creation_period',
             'materials_used',
             'dimensions',
             'listing_start',
@@ -59,15 +59,14 @@ class BidSerializer(serializers.HyperlinkedModelSerializer):
             'id',
             'item_id',
             'amount',
-            'current_bid'
+            'current_bid',
+            'time'
         )
 
     def get_current_bid(self, obj):
         return obj.item.current_price if obj.item else None
 
 class EventSerializer(serializers.HyperlinkedModelSerializer):
-    creator = CreatorSerializer()
-
     class Meta:
         model = Event
         fields = (

@@ -1,6 +1,8 @@
 import "./components.css"
+import { useState } from "react"
 
-function SearchBar ({ results, searchString, handleSearch, handleSubmit })  {
+function SearchBar ({ results, searchString, handleSearch, handleSubmit }) {
+    
     return (
         <div>
             <div className="search">
@@ -13,6 +15,17 @@ function SearchBar ({ results, searchString, handleSearch, handleSubmit })  {
                     onKeyDown={handleSubmit}
                     required
                 />
+                <div>
+                    <select className="filters" 
+                        options={"category"} id="catgeory">
+                        <option value="all">ALL</option>
+                        <option value="painting">PAINTING</option>
+                        <option value="wallart">WALL ART</option>
+                        <option value="prints">PRINTS</option>
+                        <option value="objects">OBJECTS</option>
+                        <option value="goods">GOODS</option>
+                    </select>
+                </div>
                 <button className="search_btn" onClick={handleSubmit}>
                 SEARCH
                 </button>
