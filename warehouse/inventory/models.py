@@ -21,11 +21,11 @@ def upload_to(instance, filename):
 
 class Item (models.Model):
     CATEGORIES = [
-        ('Painting', 'Painting'),
-        ('Wall Art', 'Wall Art'),
-        ('Prints', 'Prints'),
-        ('Objects', 'Objects'),
-        ('Goods', 'Goods')
+        ('painting', 'Painting'),
+        ('wallart', 'Wall Art'),
+        ('prints', 'Prints'),
+        ('objects', 'Objects'),
+        ('goods', 'Goods')
     ]
     category = models.CharField(max_length=9, choices=CATEGORIES)
     title = models.CharField(max_length=100)

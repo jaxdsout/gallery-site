@@ -18,7 +18,7 @@ function ItemDetail ({items}) {
               <h3 className="item_title">"{item.title}"</h3>
               <h3 className="creator_name itemz"><Link to={`/creators/${item.creator_id}`}>{item.creator_name}</Link></h3>
               <ul className="item_descriptions">
-                <li>{item.creation_date}</li>
+                <li>{item.creation_period}</li>
                 <li>{item.description}</li>
                 <li>{item.dimensions}</li>
                 <li>{item.materials_used}</li>

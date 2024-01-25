@@ -23,8 +23,11 @@ function App() {
   const [items, setItems] = useState([]);
   const [creators, setCreators] = useState([]);
   const [events, setEvents] = useState([]);
+
   const [results, setResults] = useState([]);
   const [searchString, setSearchString] = useState('');
+  const [filter, setFilter] = useState('')
+
 
   function handleSearch (event) {
     setSearchString(event.target.value)
@@ -38,10 +41,14 @@ function App() {
     }
   }
 
+  function handleFilter (filter) {
+    setFilter(filter)
+  }
+
   const searchItems = useCallback((searchString) => {
-  const userSearch = encodeURIComponent(searchString)
-  const url = `${API_url}/items/?search=${userSearch}`;
-  axios.get(url)
+    const userSearch = encodeURIComponent(searchString)
+    const url = `${API_url}/items/?search=${userSearch}&category=${filter}`;
+    axios.get(url)
       .then((res) => {
       setResults(res.data)
       console.log(results)
@@ -114,7 +121,8 @@ function App() {
               searchString={searchString} 
               handleSearch={handleSearch}
               handleSubmit={handleSubmit}
-            />} 
+              handleFilter={handleFilter}
+                      />} 
         />
         <Route
           path="/items/:id/"

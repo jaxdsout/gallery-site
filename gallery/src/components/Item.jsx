@@ -13,7 +13,6 @@ function Item ({ item, onItemClick }) {
           <img
             src={item.image} 
             alt={item.title}
-            style={{ width: '300px' }}
             onClick={handleClick}
           />
           <p className='title'>

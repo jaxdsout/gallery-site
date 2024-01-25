@@ -1,14 +1,14 @@
-
+import './components.css'
 
 function PreviousBids ({ item }) {
     const bids = item.bids;
     console.log(bids)
     return (
-        <div className="previous_bids">
+        <div>
             {bids.map((bid, index) => (
-                <div className="nav_items" key={index}>
-                    <p>Amount: {bid.amount}</p>
-                    <p>bid date: </p>
+                <div className="previous_bids" key={index}>
+                    <p>Timestamp: {bid.time} </p>
+                    <p>Amount: ${bid.amount}</p>
                 </div>
             ))}
         </div>

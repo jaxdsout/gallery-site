@@ -3,6 +3,9 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework import status, filters
 from rest_framework.parsers import MultiPartParser, FormParser
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter, OrderingFilter
+
 
 
 from .models import Creator, Item, Bid, Event
@@ -14,11 +17,14 @@ class CreatorViewSet(viewsets.ModelViewSet):
     serializer_class = CreatorSerializer
 
 class ItemViewSet(viewsets.ModelViewSet):
-    parser_classes = [MultiPartParser, FormParser]
-    search_fields = ['category','title', 'materials_used', 'creator__name']
-    filter_backends = (filters.SearchFilter,)
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
+    parser_classes = [MultiPartParser, FormParser]
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_fields = ['category'] 
+    search_fields = ['category', 'title', 'materials_used', 'creator__name']
+    ordering_fields = ['category', 'id']
+    ordering = ['id']
 
 class BidViewSet(viewsets.ModelViewSet):
     queryset = Bid.objects.all()
@@ -45,5 +51,4 @@ class MakeBidViewSet(viewsets.ModelViewSet):
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
-    permissions_classes = [permissions.IsAuthenticated]
     parser_classes = [MultiPartParser, FormParser]
