@@ -1,13 +1,12 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import './pages.css'
+import '../styles/creator.css'
 
 function Creator ({creators, items}) {
   const { id } = useParams()
   const creator = creators.find(creator => creator.id === parseInt(id))
   const creator_items = items.filter((item) => creator.id === item.creator_id)
 
-  console.log(creators.items)
   return (
     creator ? (
       <div>

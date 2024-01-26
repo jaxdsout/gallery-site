@@ -26,7 +26,7 @@ function App() {
 
   const [results, setResults] = useState([]);
   const [searchString, setSearchString] = useState('');
-  const [filter, setFilter] = useState('')
+  const [category, setCategory] = useState('')
 
 
   function handleSearch (event) {
@@ -41,26 +41,27 @@ function App() {
     }
   }
 
-  function handleFilter (filter) {
-    setFilter(filter)
+  function handleCategory (event) {
+    console.log(event)
+    setCategory(event)
+    console.log(category)
+  }
+
+  function handleItemClick(item) {
+    navigate(`/items/${item.id}`)
   }
 
   const searchItems = useCallback((searchString) => {
     const userSearch = encodeURIComponent(searchString)
-    const url = `${API_url}/items/?search=${userSearch}&category=${filter}`;
+    const url = `${API_url}/items/?search=${userSearch}&category=${category}`;
     axios.get(url)
       .then((res) => {
       setResults(res.data)
-      console.log(results)
       })
       .catch((error) => {
       console.error(error)
       })
   }, [navigate])
-
-  function handleItemClick(item) {
-    navigate(`/items/${item.id}`)
-  }
 
   async function getItems() {
     try {
@@ -102,39 +103,34 @@ function App() {
     <div>
       <Header />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Home 
-              items={items}
-              events={events}
-            />
-          }>
-        </Route>
-        <Route 
-          path="/items/all/" 
-          element={
-            <AllItems 
-              items={items}
-              results={results}
-              onItemClick={handleItemClick}
-              searchString={searchString} 
-              handleSearch={handleSearch}
-              handleSubmit={handleSubmit}
-              handleFilter={handleFilter}
-                      />} 
+        <Route path="/" element={
+          <Home 
+            items={items}
+            events={events}/>
+        }/>
+        <Route path="/items/all/" element={
+          <AllItems 
+            items={items}
+            results={results}
+            onItemClick={handleItemClick}
+            searchString={searchString} 
+            handleSearch={handleSearch}
+            handleSubmit={handleSubmit}
+            handleCategory={handleCategory}
+          />
+        }/>
+        <Route path="/items/:id/" element={
+          <ItemDetail 
+            items={items}
+          />}
         />
-        <Route
-          path="/items/:id/"
-          element={<ItemDetail items={items}/>}
+        <Route path="/items/featured/" element={
+          <FeaturedItems items={items}
+          />}
         />
-        <Route
-          path="/items/featured/"
-          element={<FeaturedItems items={items}/>}
-        />
-        <Route
-          path="/creators/all/"
-          element={<AllCreators creators={creators} />}
+        <Route path="/creators/all/" element={
+          <AllCreators creators={creators} 
+          />}
         />
         <Route
           path="/creators/:id/"

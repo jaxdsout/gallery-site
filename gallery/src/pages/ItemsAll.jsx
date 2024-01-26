@@ -1,27 +1,20 @@
 import Item from "../components/Item";
 import SearchBar from "../components/SearchBar";
-import "./pages.css"
+import { Fragment } from "react";
+import '../styles/item.css'
 
-function AllItems({
-    items, 
-    results, 
-    onItemClick, 
-    searchString, 
-    handleSearch, 
-    handleSubmit, 
-    handleFilter, 
-    filters 
-  }) {
+function AllItems({ items, results, onItemClick, searchString, handleSearch, handleSubmit, handleCategory }) {
   return (
     <div className="items_all">
-      <SearchBar 
+      <Fragment>
+        <SearchBar 
         results={results}
         searchString={searchString} 
         handleSearch={handleSearch}
         handleSubmit={handleSubmit}
-        handleFilter={handleFilter}
-        filters={filters}
+        handleCategory={handleCategory}
       />
+      </Fragment>
       <div className="items_container">
         {results.length > 0 ? (
           results.map((result, index) => (

@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import Bid from "../components/Bid";
 import ReactImageMagnify from "react-image-magnify";
-import "./pages.css"
+import '../styles/item.css'
 
 
 function ItemDetail ({items}) {

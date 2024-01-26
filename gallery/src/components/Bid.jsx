@@ -1,6 +1,7 @@
 import { useState } from "react";
-import PreviousBids from "./PreviousBids";
+import PreviousBids from "./BidPrevious";
 import axios from "axios";
+import '../styles/bid.css'
 
 const API_url = 'http://localhost:8000/inventory';
 
@@ -19,7 +20,6 @@ function Bid({ item }) {
 
   const makeBid = (e) => {
     e.preventDefault();
-    console.log(item);
     const newBid = {
       amount: bid,
       item: item.id,
@@ -40,9 +40,7 @@ function Bid({ item }) {
       setLowBid(!lowBid);
     }
   };
-
-
-
+  
   return (
     <div className="bid_component">
       <div className="bid_form">

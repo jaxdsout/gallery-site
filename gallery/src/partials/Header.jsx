@@ -1,4 +1,4 @@
-import './partials.css';
+import '../styles/partials.css';
 import { Link } from 'react-router-dom';
 
 function Header () {

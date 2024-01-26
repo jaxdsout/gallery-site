@@ -1,8 +1,7 @@
-import './components.css'
+import '../styles/bid.css'
 
 function PreviousBids ({ item }) {
     const bids = item.bids;
-    console.log(bids)
     return (
         <div className="previous_bids">
             {item.bids.length === 0 ? (

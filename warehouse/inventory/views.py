@@ -20,8 +20,7 @@ class ItemViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = ['category'] 
     search_fields = ['category', 'title', 'materials_used', 'creator__name']
-    ordering_fields = ['category', 'id']
-    ordering = ['id']
+
 
 class BidViewSet(viewsets.ModelViewSet):
     queryset = Bid.objects.all()

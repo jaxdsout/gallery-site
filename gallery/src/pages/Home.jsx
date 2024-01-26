@@ -1,4 +1,4 @@
-import "./pages.css"
+import "../styles/home.css"
 import { Link } from "react-router-dom"
 
 function Home ({ items, events }) {

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import './pages.css'
+import '../styles/item.css'
 
 function FeaturedItems({ items }) {
     const featured_artist = 'Berk Turhan'

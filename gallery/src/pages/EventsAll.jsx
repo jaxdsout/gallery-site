@@ -1,7 +1,6 @@
-import './pages.css';
+import '../styles/event.css'
 
 function AllEvents ({ events }) {
-    console.log(events)
     
     return (
         <div className='events_page'>

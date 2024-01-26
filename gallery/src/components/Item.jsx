@@ -1,4 +1,4 @@
-import './components.css'
+import '../styles/item.css'
 
 function Item ({ item, onItemClick }) {
     

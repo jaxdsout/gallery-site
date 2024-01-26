@@ -1,0 +1,72 @@
+.creator_header {
+    text-transform: lowercase;
+    font-size: 10rem;
+    font-weight: 800;
+    text-align: right;
+    margin-right: 3rem;
+    color: white
+}
+
+.creator_name {
+    text-transform: uppercase;
+    font-size: 4rem;
+    color: white;
+    font-weight: 700;
+
+}
+
+.creator_details {
+    margin-left: 3rem;
+    margin-right: 3rem;
+    padding: 0.5rem
+}
+
+.creator_items {
+    display: flex;
+    flex-direction: row;
+    padding: 0.5rem;
+    margin-left: 6rem;
+    margin-right: 6rem;
+
+}
+
+.creator_item_image {
+    padding-left: 0.625rem;
+    padding-right: 0.625rem;
+
+}
+
+.list {
+    font-size: 3rem;
+    text-align: center;
+}
+
+.creators_page {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    margin-left: 3rem;
+
+}
+
+.creators_logo {
+    color: white;
+    letter-spacing: 0.2rem;
+    font-weight: 600;
+    font-size: 4rem;
+    text-transform: lowercase;
+}
+
+.nav_creator {
+    font-weight: 700;
+    color: whitesmoke !important;
+    text-transform: uppercase;
+}
+
+.nav_creator:hover {
+    color: gray
+}
+
+a {
+    color: whitesmoke !important;
+}
