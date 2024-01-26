@@ -42,24 +42,16 @@ function App() {
   }
 
   function handleCategory (userChoice) {
-    console.log(userChoice);
-    setCategory(userChoice); // Update the state
+    setCategory(userChoice);
   }
-  useEffect(() => {
-    console.log(category); // Log the updated value of category
-  }, [category]);
-
-  console.log(category)
 
   function handleItemClick(item) {
     navigate(`/items/${item.id}`)
   }
 
   const searchItems = useCallback((searchString) => {
-    console.log(category)
     const userSearch = encodeURIComponent(searchString)
     const url = `${API_url}/items/?search=${userSearch}&category=${category}`;
-    console.log(category)
     axios.get(url)
       .then((res) => {
       setResults(res.data)
