@@ -41,6 +41,8 @@ function Bid({ item }) {
     }
   };
 
+
+
   return (
     <div className="bid_component">
       <div className="bid_form">
@@ -60,13 +62,9 @@ function Bid({ item }) {
           <p> YOU NEED TO BID MORE. THE MINIMUM INCREMENT IS $50. </p>
         )}
       </div>
-
-      <section className={`modal ${prevBids ? '' : 'hidden'}`}>
-          <PreviousBids item={item} />
-      </section>
-
-      <div className={`overlay ${prevBids ? '' : 'hidden'}`}></div>
-
+      {prevBids && 
+        <PreviousBids item={item}/>
+      }
       <button className="nav_button" onClick={togglePrevBids}>
         PREVIOUS BIDS
       </button>

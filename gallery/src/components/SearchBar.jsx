@@ -21,7 +21,7 @@ function SearchBar ({
 
     return (
         <div className="search">
-            <form onSubmit={handleSubmit}>
+            <form className="search_form" onSubmit={handleSubmit}>
                 <input 
                 className="search_input" 
                 type="search" 
@@ -37,12 +37,12 @@ function SearchBar ({
                     onChange={handleFilterChange}
                     id="category"
                 >
-                    <option value="all">ALL</option>
-                    <option value="painting">PAINTING</option>
-                    <option value="wallart">WALL ART</option>
-                    <option value="prints">PRINTS</option>
-                    <option value="objects">OBJECTS</option>
-                    <option value="goods">GOODS</option>
+                    <option className='filter_option' value="all">ALL</option>
+                    <option className='filter_option' value="painting">PAINTING</option>
+                    <option className='filter_option' value="wallart">WALL ART</option>
+                    <option className='filter_option' value="prints">PRINTS</option>
+                    <option className='filter_option' value="objects">OBJECTS</option>
+                    <option className='filter_option' value="goods">GOODS</option>
                 </select>
                 <button type="submit" className="search_btn" >
                 SEARCH

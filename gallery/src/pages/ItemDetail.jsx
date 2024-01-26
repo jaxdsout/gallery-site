@@ -1,12 +1,12 @@
 import { useParams, Link } from "react-router-dom";
 import Bid from "../components/Bid";
+import ReactImageMagnify from "react-image-magnify";
 import "./pages.css"
 
 
 function ItemDetail ({items}) {
   const { id } = useParams()
   const item = items.find(item => item.id === parseInt(id))
-  
     return (
       item ? (
         <div className="item_detail">
@@ -17,14 +17,16 @@ function ItemDetail ({items}) {
           <div>
               <h3 className="item_title">"{item.title}"</h3>
               <h3 className="creator_name itemz"><Link to={`/creators/${item.creator_id}`}>{item.creator_name}</Link></h3>
+              <p>{item.description}</p>
               <ul className="item_descriptions">
                 <li>{item.creation_period}</li>
-                <li>{item.description}</li>
                 <li>{item.dimensions}</li>
                 <li>{item.materials_used}</li>
               </ul>
-              <h3 className="current_price_item">CURRENT PRICE: <span className="dollas">$ {item.current_price}</span></h3>
-              <Bid item={item}/>
+              <div>
+                <h3 className="current_price_item">CURRENT PRICE: <span className="dollas">$ {item.current_price}</span></h3>
+                <Bid item={item}/>
+              </div>
           </div>
         </div>
       ) : null

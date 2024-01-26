@@ -6,6 +6,7 @@ function AllEvents ({ events }) {
     return (
         <div className='events_page'>
           <h3 className='events_logo'>UPCOMING EVENTS.</h3>
+          <hr></hr>
           {events.map((event) => (
             <div className="event_container" key={event.id}>
               <img className='event_poster'

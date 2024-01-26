@@ -6,11 +6,8 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 
-
-
 from .models import Creator, Item, Bid, Event
 from .serializers import CreatorSerializer, ItemSerializer, BidSerializer, EventSerializer
-
 
 class CreatorViewSet(viewsets.ModelViewSet):
     queryset = Creator.objects.all()
@@ -29,7 +26,6 @@ class ItemViewSet(viewsets.ModelViewSet):
 class BidViewSet(viewsets.ModelViewSet):
     queryset = Bid.objects.all()
     serializer_class = BidSerializer
-    permission_classes = [permissions.IsAuthenticated]
         
 class MakeBidViewSet(viewsets.ModelViewSet):
     queryset = Bid.objects.all()

@@ -3,9 +3,9 @@ body {
   font-family: 'Manrope', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  width: 100vw !important;
+  max-width: 100vw !important;
   min-height: 100vh !important;
-  background-color: rgb(57, 57, 57) !important;
+  background-color: rgb(169, 169, 169) !important;
   display: flex !important;
   flex-direction: column !important;
   flex-grow: 1 !important;

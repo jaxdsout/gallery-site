@@ -1,11 +1,15 @@
 from django.db import models
 from django.utils import timezone
+import datetime
+
+def upload_to(instance, filename):
+    return 'items/{filename}'.format(filename=filename)
 
 class Creator(models.Model):
     ROLES = [
-        ('Artist', 'Artist'),
-        ('Designer', 'Designer'),
-        ('Company', 'Company')
+        ('artist', 'Artist'),
+        ('designer', 'Designer'),
+        ('company', 'Company')
     ]
     role = models.CharField(max_length=8, choices=ROLES)
     name = models.CharField(max_length=150)
@@ -14,10 +18,6 @@ class Creator(models.Model):
 
     def __str__(self):
         return self.name
-
-
-def upload_to(instance, filename):
-    return 'items/{filename}'.format(filename=filename)
 
 class Item (models.Model):
     CATEGORIES = [
