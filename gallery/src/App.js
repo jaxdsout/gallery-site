@@ -41,19 +41,25 @@ function App() {
     }
   }
 
-  function handleCategory (event) {
-    console.log(event)
-    setCategory(event)
-    console.log(category)
+  function handleCategory (userChoice) {
+    console.log(userChoice);
+    setCategory(userChoice); // Update the state
   }
+  useEffect(() => {
+    console.log(category); // Log the updated value of category
+  }, [category]);
+
+  console.log(category)
 
   function handleItemClick(item) {
     navigate(`/items/${item.id}`)
   }
 
   const searchItems = useCallback((searchString) => {
+    console.log(category)
     const userSearch = encodeURIComponent(searchString)
     const url = `${API_url}/items/?search=${userSearch}&category=${category}`;
+    console.log(category)
     axios.get(url)
       .then((res) => {
       setResults(res.data)
@@ -61,7 +67,7 @@ function App() {
       .catch((error) => {
       console.error(error)
       })
-  }, [navigate])
+  }, [category])
 
   async function getItems() {
     try {

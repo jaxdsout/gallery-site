@@ -1,16 +1,13 @@
 import "../styles/searchbar.css"
-import { useState } from "react"
 import { Icon } from "semantic-ui-react";
 
 
 function SearchBar ({ results, searchString, handleSearch, handleSubmit, handleCategory }) {
     
-    const [userChoice, setUserChoice] = useState('')
 
     const handleUserChoice = (event) => {
-        setUserChoice(event.target.value)
-        console.log(userChoice)
-        handleCategory(userChoice)
+        const userChoice = event.target.value;
+        handleCategory(userChoice);
     }
     
     return (
@@ -22,16 +19,13 @@ function SearchBar ({ results, searchString, handleSearch, handleSubmit, handleC
                 value={searchString}
                 onChange={handleSearch}
                 onKeyDown={handleSubmit}
-                required
             />
             <select
                 className="filters_dropdown"
-                value={userChoice}
                 onChange={handleUserChoice}
-                defaultValue={''}
             >
                 <option value=''>ALL</option>
-                <option value='paintings'>PAINTINGS</option>
+                <option value='painting'>PAINTINGS</option>
                 <option value='wallart'>WALL ART</option>
                 <option value='objects'>OBJECTS</option>
                 <option value='prints'>PRINTS</option>
