@@ -56,10 +56,12 @@ function Bid({ item }) {
             MAKE BID
           </button>
         </form>
-        {lowBid && (
-          <p> YOU NEED TO BID MORE. THE MINIMUM INCREMENT IS $50. </p>
-        )}
       </div>
+      {lowBid && (
+          <div className="low_bid"> 
+            <p className="bid_more">YOU NEED TO BID MORE. THE MINIMUM INCREMENT IS $50. </p>
+          </div>
+        )}
       {prevBids && 
         <PreviousBids item={item}/>
       }

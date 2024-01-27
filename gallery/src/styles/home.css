@@ -33,8 +33,10 @@
 
 .front_preview {
     text-align: center;
-    width: 40%;
+    width: 45%;
     height: 400px;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 .front_preview_h6 {

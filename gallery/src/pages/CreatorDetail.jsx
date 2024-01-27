@@ -10,7 +10,7 @@ function Creator ({creators, items}) {
   return (
     creator ? (
       <div>
-          <h3 className="creator_header">{creator.role}</h3>
+          <h3 className="creator_header">{creator.role}.</h3>
           <div className="creator_details">
             <h5 className="creator_name">{creator.name}</h5>
             <p>{creator.about}</p>

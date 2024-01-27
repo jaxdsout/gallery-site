@@ -13,12 +13,12 @@ function AllEvents ({ events }) {
                 alt={event.title}
               />
               <div className='event_info'>
-                <h4>{event.title}</h4>
-                <p>{event.time}</p>
-                <p>{event.description}</p>
+                <h4 className='event_title'>{event.title}</h4>
+                <p className='event_description'>{event.description}</p>
                 {event.creator ? (
-                  <p>Featured Artist: {event.creator.name}</p>
+                  <p className='event_creator'>Featured Artist: {event.creator.name}</p>
                 ) : null}
+                <p className='event_time'>{event.time}</p>
               </div>
           </div>
         ))}

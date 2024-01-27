@@ -27,6 +27,7 @@ function App() {
   const [results, setResults] = useState([]);
   const [searchString, setSearchString] = useState('');
   const [category, setCategory] = useState('')
+  const [emptyResults, setEmptyResults] = useState(false);
 
 
   function handleSearch (event) {
@@ -49,15 +50,22 @@ function App() {
     navigate(`/items/${item.id}`)
   }
 
+  const displayEmptyResults = () => {
+    setEmptyResults(true)
+  }
+
   const searchItems = useCallback((searchString) => {
     const userSearch = encodeURIComponent(searchString)
     const url = `${API_url}/items/?search=${userSearch}&category=${category}`;
     axios.get(url)
       .then((res) => {
-      setResults(res.data)
+        if (res.data.length === 0) {
+          displayEmptyResults();
+        }
+        setResults(res.data)
       })
       .catch((error) => {
-      console.error(error)
+        console.error(error)
       })
   }, [category])
 
@@ -115,6 +123,7 @@ function App() {
             handleSearch={handleSearch}
             handleSubmit={handleSubmit}
             handleCategory={handleCategory}
+            emptyResults={emptyResults}
           />
         }/>
         <Route path="/items/:id/" element={

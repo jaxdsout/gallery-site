@@ -1,9 +1,11 @@
 import Item from "../components/Item";
 import SearchBar from "../components/SearchBar";
+import { useState } from "react";
 import { Fragment } from "react";
 import '../styles/item.css'
 
-function AllItems({ items, results, onItemClick, searchString, handleSearch, handleSubmit, handleCategory }) {
+function AllItems({ items, results, onItemClick, searchString, handleSearch, handleSubmit, handleCategory, emptyResults }) {
+
   return (
     <div className="items_all">
       <Fragment>
@@ -14,6 +16,9 @@ function AllItems({ items, results, onItemClick, searchString, handleSearch, han
         handleSubmit={handleSubmit}
         handleCategory={handleCategory}
       />
+      <div className="empty_results">
+        {emptyResults && <p>No results found for "<span className="search_string">{searchString}</span>." Showing all results instead.</p>}
+      </div>
       </Fragment>
       <div className="items_container">
         {results.length > 0 ? (

@@ -13,7 +13,7 @@ function SearchBar ({ results, searchString, handleSearch, handleSubmit, handleC
     return (
         <div className="search_bar">
             <input 
-                className="search_input" 
+                className="search_bar_input" 
                 type="search" 
                 placeholder="search..."
                 value={searchString}
