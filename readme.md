@@ -11,56 +11,56 @@ Since square footage is limited in the city, the site will function as the digit
 
 ## LIST OF MODELS
 
-### ITEM
-- category []
-    - wall art
-    - objects
-    - prints
-    - furniture
-- goods
-- description
-- creation date
-- materials used
-- dimensions
-- starting price
-- current price
-- images []
-- start date
-- end date
-- (creator)
-
 ### CREATOR
 - role
     - artist
     - designer
     - company
-- about creator
-- website link
+- name
+- about
+- website
 - list of items []
 
+### ITEM
+- category []
+    - painting
+    - wall art
+    - prints
+    - objects
+    - goods
+- title
+- description
+- materials used
+- creation period
+- dimensions
+- start date
+- end date
+- starting price
+- current price
+- images
+- (creator)
+
 ### BID
-- (item)
 - offer amount
-- name
-- phone number
-- email
+- time
+- (item)
 
 ### EVENT
 - title
 - description
 - poster
 - time
-- date
 - (creator)
-
 
 
 ## LIST OF STORIES
 
 #### AS AN ADMIN...
-- I will be the only one given access to full CRUD (CRUD items and events)
+- I will be the only one given access to full CRUD over the warehouse aspect of the website 
 
 #### AS A USER...
-- I will be able to search (READ) for art and goods on their respective search pages (live filter?)
+- I will be able to search (READ) for art and check out specifics on each work
+- I will be able to look through the list of creators and select from their works
+- I will be able to see events listed in order 
 - I will be able to make a bid for an item and UPDATE the current price of the item (no C or D)
 
