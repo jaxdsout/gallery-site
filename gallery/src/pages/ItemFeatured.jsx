@@ -9,7 +9,7 @@ function FeaturedItems({ items }) {
 
     return(
         <div className="featured">
-            <h3 className="logo">FEATURED SET.</h3>
+            <h3 className="logo futur">FEATURED SET.</h3>
             <h3 className="featured_title"> {keyword} </h3>
             <p>by {featured_artist}</p>
             <p> a little blurb about the featured text</p>

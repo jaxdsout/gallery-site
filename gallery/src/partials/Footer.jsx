@@ -16,7 +16,7 @@ function Footer () {
                 </div>
                 <div className='contact_info'>
                     <h3 className="getin_touch"> GET IN TOUCH. </h3>
-                    <p> 4411 Montrose Boulevard, Suite A, Houston, Texas 77006 </p>
+                    <Link to={`https://maps.app.goo.gl/9sXqG2uVtjWWJtXA8`}><p className='map_link'> 4411 Montrose Boulevard, Houston, Texas 77006 </p></Link>
                     <Link to={`mailto:${email}`}><p className='contact_links'>Email Us</p></Link>
                     <Link to={`tel:${tele}`}><p className='contact_links'>Call Us</p></Link>
                     <Link to={"http://www.instagram.com/thegallerythegallerythegallery/"}>

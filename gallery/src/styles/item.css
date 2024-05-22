@@ -12,7 +12,7 @@
     padding-right: 1rem;
     padding-bottom: .5rem;
     overflow-x: auto;
-    max-width: 80rem;
+    max-width: 80%;
     max-height: 40rem;
 }
 
@@ -22,13 +22,14 @@
     margin-left: 2rem;
     max-height: 40rem !important;
     min-width: 15rem;
+    max-width: 20rem;
 }
 
 .item_image {
     min-height: 100px;
 }
 
-.item_image:hover, .featured_image:hover {
+.item_image:hover, .featured_image:hover, .preview_image:hover, .creator_item_image:hover {
     --mask:
     radial-gradient(37.620000000000005px at 50% calc(100% + 2.50px),#0000 calc(99% - 25px),#000 calc(101% - 25px) 99%,#0000 101%) calc(50% - 50px) calc(50% - 25px + .5px)/100px 50px ,
     radial-gradient(37.620000000000005px at 50% -2.5px,#0000 calc(99% - 25px),#000 calc(101% - 25px) 99%,#0000 101%) 50% calc(50% + 25px)/100px 50px ;
@@ -36,7 +37,7 @@
           mask: var(--mask);
 }
 
-.item_image:active, .featured_image:active {
+.item_image:active, .featured_image:active, .preview_image:active, .creator_item_image:active {
     --mask:
     radial-gradient(37.620000000000005px at 20% calc(100% + 2.50px),#0000 calc(99% - 25px),#000 calc(101% - 25px) 99%,#0000 101%) calc(50% - 50px) calc(50% - 25px + .5px)/100px 50px ,
     radial-gradient(37.620000000000005px at 20% -2.5px,#0000 calc(99% - 25px),#000 calc(101% - 25px) 99%,#0000 101%) 50% calc(50% + 25px)/100px 50px ;
@@ -169,4 +170,8 @@
 
 .set_header {
     margin-top: 2rem;
+}
+
+.futur {
+    margin-left: -0.5rem !important;
 }

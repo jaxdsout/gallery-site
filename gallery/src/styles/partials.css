@@ -7,7 +7,7 @@
     position: sticky;
     width: 100%;
     top: 0;
-    height: 15rem;
+    height: 13.5rem;
     box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.376);
     --mask:
     radial-gradient(34.99px at 50% calc(100% - 48.00px),#000 99%,#0000 101%) calc(50% - 60px) 0/120px 100%,
@@ -18,7 +18,7 @@
 }
 
 .header:hover {
-  height: 18rem;
+  height: 15.5rem;
 }
 
 .buttons {
@@ -189,6 +189,10 @@ button {
 
 .hours {
     list-style-type: none;
+}
+
+.map_link {
+    margin-bottom: 1rem !important;
 }
 
 

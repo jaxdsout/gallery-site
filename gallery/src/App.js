@@ -29,7 +29,6 @@ function App() {
   const [category, setCategory] = useState('')
   const [emptyResults, setEmptyResults] = useState(false);
 
-
   function handleSearch (event) {
     setSearchString(event.target.value)
   }
@@ -124,6 +123,7 @@ function App() {
             handleSubmit={handleSubmit}
             handleCategory={handleCategory}
             emptyResults={emptyResults}
+            category={category}
           />
         }/>
         <Route path="/items/:id/" element={
@@ -154,7 +154,6 @@ function App() {
       </Routes>
       <Footer />
     </div>
-
   );
 }
 

@@ -10,7 +10,7 @@ function ItemDetail ({items}) {
       item ? (
         <div className="item_detail">
           <div>
-            <Link to={"/items/all/"}><button className="nav_button">BACK</button></Link>
+            <Link to={"/items/all/"}><button className="nav_button">BACK TO ALL</button></Link>
           </div>
           <img className="item_detail_image" src={item.image} alt={item.title}/>
           <div>

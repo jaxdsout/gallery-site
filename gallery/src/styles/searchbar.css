@@ -6,16 +6,16 @@
     display: flex;
 }
 
-.search_btn {
+.search_btn, .reset_btn {
     border: gray solid 2px;
     font-weight: 600 !important;
 }
 
-.search_btn:hover {
+.search_btn:hover, .reset_btn:hover {
     border: white solid 2px !important;
 }
 
-.search_btn:active {
+.search_btn:active, .reset_btn:active {
     -webkit-animation: pulsate-bck 0.5s ease-in-out both;
     animation: pulsate-bck 0.5s ease-in-out both;
 }
@@ -24,8 +24,17 @@
     width: 40rem !important;
 }
 
+.reset_btn {
+    margin-left: .5rem;
+}
+
 .search_input:focus, .search_input:active, .search_input:hover {
     border: white solid 2px !important;
+}
+
+input:focus {
+    border: white solid 2px !important;
+
 }
 
 input::placeholder {
@@ -55,6 +64,7 @@ select {
     color: white !important;
     border: white solid 2px !important;
 }
+
 
 @-webkit-keyframes slide-bottom {
     0% {
