@@ -12,7 +12,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['warehouse.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 INSTALLED_APPS = [
@@ -64,7 +64,7 @@ WSGI_APPLICATION = 'warehouse.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600)
+    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
 
 
