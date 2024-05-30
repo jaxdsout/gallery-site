@@ -1,8 +1,10 @@
 from pathlib import Path
 import os
+import psycopg2
 from dotenv import load_dotenv
 load_dotenv()
 import dj_database_url
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -66,14 +68,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'warehouse.wsgi.application'
 
+DATABASE_URL = os.environ['DATABASE_URL']
+
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-    }
+   'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
 
-DATABASES['default'].update(dj_database_url.config(conn_max_age=600, ssl_require=True))
 
 
 
