@@ -68,7 +68,9 @@ WSGI_APPLICATION = 'warehouse.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL'), conn_max_age=600, ssl_require=True
+    )
 }
 
 
@@ -97,7 +99,7 @@ USE_I18N = True
 USE_TZ = True
 
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
