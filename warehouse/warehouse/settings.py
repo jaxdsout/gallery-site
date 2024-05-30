@@ -1,10 +1,9 @@
 from pathlib import Path
 import os
-import psycopg2
 from dotenv import load_dotenv
 load_dotenv()
 import dj_database_url
-
+import psycopg2
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -17,6 +16,10 @@ DEBUG = True
 ALLOWED_HOSTS = ['gallery-warehouse-6e7db4cb0263.herokuapp.com', 'localhost', '127.0.0.1']
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -69,14 +72,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'warehouse.wsgi.application'
 
 DATABASE_URL = os.environ['DATABASE_URL']
-
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 DATABASES = {
-   'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
-
-
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -102,9 +102,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
-
-STATIC_URL = '/static/'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -135,8 +132,6 @@ DJOSER = {
     }
 }
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
 
 CORS_ALLOW_ALL_ORIGINS = True 
 
