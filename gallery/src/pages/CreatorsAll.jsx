@@ -9,7 +9,7 @@ function CreatorsAll({creators}) {
       {creators.map((creator) => (
         <ul key={creator.id}>
           <li className="nav_creator">
-            <Link to={`/creators/${creator.id}`}>{creator.name}</Link>
+            <Link to={`/gallery-site/creators/${creator.id}`}>{creator.name}</Link>
           </li>
         </ul>
       ))}

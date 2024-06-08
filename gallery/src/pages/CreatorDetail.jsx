@@ -20,7 +20,7 @@ function Creator ({creators, items}) {
           <div className="creator_items">
             {creator_items.map((item, index) => (
               <div key={index}>
-                <Link to={`/items/${item.id}`}>
+                <Link to={`/gallery-site/items/${item.id}`}>
                 <img
                   src={item.image} 
                   alt={item.title}

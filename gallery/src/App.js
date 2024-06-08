@@ -45,7 +45,7 @@ function App() {
   }
 
   function handleItemClick(item) {
-    navigate(`/items/${item.id}`)
+    navigate(`/gallery-site/items/${item.id}`)
   }
 
   const displayEmptyResults = () => {
@@ -108,12 +108,12 @@ function App() {
     <div>
       <Header />
       <Routes>
-        <Route path="/" element={
+        <Route path="/gallery-site/" element={
           <Home 
             items={items}
             events={events}/>
         }/>
-        <Route path="/items/all/" element={
+        <Route path="/gallery-site/items/all/" element={
           <AllItems 
             items={items}
             results={results}
@@ -126,21 +126,21 @@ function App() {
             category={category}
           />
         }/>
-        <Route path="/items/:id/" element={
+        <Route path="/gallery-site/items/:id/" element={
           <ItemDetail 
             items={items}
           />}
         />
-        <Route path="/items/featured/" element={
+        <Route path="/gallery-site/items/featured/" element={
           <FeaturedItems items={items}
           />}
         />
-        <Route path="/creators/all/" element={
+        <Route path="/gallery-site/creators/all/" element={
           <AllCreators creators={creators} 
           />}
         />
         <Route
-          path="/creators/:id/"
+          path="/gallery-site/creators/:id/"
           element={
             <Creator 
               items={items} 
@@ -148,7 +148,7 @@ function App() {
             />}
         />
         <Route
-          path="/events/"
+          path="/gallery-site/events/"
           element={<AllEvents events={events} />}
         />
       </Routes>

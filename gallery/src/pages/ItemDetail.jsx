@@ -10,12 +10,12 @@ function ItemDetail ({items}) {
       item ? (
         <div className="item_detail">
           <div>
-            <Link to={"/items/all/"}><button className="nav_button">BACK TO ALL</button></Link>
+            <Link to={"/gallery-site/items/all/"}><button className="nav_button">BACK TO ALL</button></Link>
           </div>
           <img className="item_detail_image" src={item.image} alt={item.title}/>
           <div>
               <h3 className="item_detail_title">"{item.title}"</h3>
-              <h3 className="item_creator_name"><Link to={`/creators/${item.creator_id}`}>{item.creator_name}</Link></h3>
+              <h3 className="item_creator_name"><Link to={`/gallery-site/creators/${item.creator_id}`}>{item.creator_name}</Link></h3>
               <p>{item.description}</p>
               <ul className="item_descriptions">
                 <li>{item.creation_period}</li>
