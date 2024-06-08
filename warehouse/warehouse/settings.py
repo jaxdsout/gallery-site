@@ -1,11 +1,16 @@
 from pathlib import Path
 import os
-from dotenv import load_dotenv
-load_dotenv()
+import dotenv
 import dj_database_url
 import psycopg2
+import django_heroku
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+dotenv_file = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['SECRET_KEY']
@@ -15,8 +20,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['gallery-warehouse-6e7db4cb0263.herokuapp.com', 'localhost', '127.0.0.1']
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'media')
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -71,12 +81,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'warehouse.wsgi.application'
 
-DATABASE_URL = os.environ['DATABASE_URL']
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-
-DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
-}
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -132,6 +138,14 @@ DJOSER = {
     }
 }
 
+django_heroku.settings(locals())
+
 
 CORS_ALLOW_ALL_ORIGINS = True 
+
+options = DATABASES['default'].get('OPTIONS', {})
+options.pop('sslmode', None)
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 

@@ -15,7 +15,7 @@ import axios from 'axios';
 import React, {useState, useEffect, useCallback} from 'react';
 import {Route, Routes, useNavigate} from 'react-router-dom'
 
-const API_url = 'http://localhost:8000/inventory'
+const API_url = process.env.REACT_APP_API_URL
 
 function App() {
   const navigate = useNavigate();
