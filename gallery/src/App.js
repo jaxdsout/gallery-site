@@ -15,7 +15,6 @@ import axios from 'axios';
 import React, {useState, useEffect, useCallback} from 'react';
 import {Route, Routes, useNavigate} from 'react-router-dom'
 
-const API_url = process.env.REACT_APP_API_URL
 
 function App() {
   const navigate = useNavigate();
@@ -55,7 +54,7 @@ function App() {
 
   const searchItems = useCallback((searchString) => {
     const userSearch = encodeURIComponent(searchString)
-    const url = `${API_url}/items/?search=${userSearch}&category=${category}`;
+    const url = `${process.env.REACT_APP_API_URL}/items/?search=${userSearch}&category=${category}`;
     axios.get(url)
       .then((res) => {
         if (res.data.length === 0) {
@@ -70,7 +69,7 @@ function App() {
 
   async function getItems() {
     try {
-      const response = await axios.get(`${API_url}/items/`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/items/`);
       const data = response.data;
       setItems(data);
     } catch (error) {
@@ -80,7 +79,7 @@ function App() {
   
   async function getCreators() {
     try {
-      const response = await axios.get(`${API_url}/creators/`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/creators/`);
       const data = response.data;
       setCreators(data);
     } catch (error) {
@@ -90,7 +89,7 @@ function App() {
 
   async function getEvents() {
     try {
-      const response = await axios.get(`${API_url}/events/`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/events/`);
       const data = response.data;
       setEvents(data);
     } catch (error) {
@@ -99,10 +98,11 @@ function App() {
   }
 
   useEffect(() => {
-    getItems();
     getCreators();
+    getItems();
     getEvents()
   }, []);
+
 
   return (
     <div>

@@ -21,11 +21,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['gallery-warehouse-6e7db4cb0263.herokuapp.com', 'localhost', '127.0.0.1']
 
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'media')
-]
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -118,7 +113,6 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',      
-        'rest_framework.authentication.BasicAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
@@ -142,9 +136,6 @@ django_heroku.settings(locals())
 
 
 CORS_ALLOW_ALL_ORIGINS = True 
-
-options = DATABASES['default'].get('OPTIONS', {})
-options.pop('sslmode', None)
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 

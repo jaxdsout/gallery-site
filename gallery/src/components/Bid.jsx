@@ -3,8 +3,6 @@ import PreviousBids from "./BidPrevious";
 import axios from "axios";
 import '../styles/bid.css'
 
-const API_url = 'http://localhost:8000/inventory';
-
 function Bid({ item }) {
   const [bid, setBid] = useState(item.current_price);
   const [prevBids, setPrevBids] = useState(false);
@@ -27,7 +25,7 @@ function Bid({ item }) {
     };
     if (newBid.amount >= newBid.current_bid + 50) {
       axios
-        .post(`${API_url}/user-bids/`, newBid, {
+        .post(`${process.env.REACT_APP_API_URL}/user-bids/`, newBid, {
           headers: { "Content-Type": "application/json" },
         })
         .then(() => {
