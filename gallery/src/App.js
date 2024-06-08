@@ -108,12 +108,12 @@ function App() {
     <div>
       <Header />
       <Routes>
-        <Route path="/gallery-site/" element={
+        <Route path="/" element={
           <Home 
             items={items}
             events={events}/>
         }/>
-        <Route path="/gallery-site/items/all/" element={
+        <Route path="/items/all/" element={
           <AllItems 
             items={items}
             results={results}
@@ -126,21 +126,21 @@ function App() {
             category={category}
           />
         }/>
-        <Route path="/gallery-site/items/:id/" element={
+        <Route path="/items/:id/" element={
           <ItemDetail 
             items={items}
           />}
         />
-        <Route path="/gallery-site/items/featured/" element={
+        <Route path="/items/featured/" element={
           <FeaturedItems items={items}
           />}
         />
-        <Route path="/gallery-site/creators/all/" element={
+        <Route path="/creators/all/" element={
           <AllCreators creators={creators} 
           />}
         />
         <Route
-          path="/gallery-site/creators/:id/"
+          path="/creators/:id/"
           element={
             <Creator 
               items={items} 
@@ -148,7 +148,7 @@ function App() {
             />}
         />
         <Route
-          path="/gallery-site/events/"
+          path="/events/"
           element={<AllEvents events={events} />}
         />
       </Routes>
