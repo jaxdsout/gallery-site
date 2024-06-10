@@ -16,7 +16,7 @@ function FeaturedItems({ items }) {
             <p className="set_header"> browse the full collection: </p>
             <div className="featured_set">
                 {featured_set.map(item => (
-                    <Link to={`/gallery-site/items/${item.id}`}>
+                    <Link to={`/items/${item.id}/`}>
                         <img className="featured_image" key={item.id} src={item.image} alt={item.title}/>
                     </Link>
                 ))}

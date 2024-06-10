@@ -16,14 +16,14 @@ function Home ({ items, events }) {
                 <div className="front_preview">
                     <h6 className="front_preview_h6"> FEATURED COLLECTION </h6>
                     {featured_set && (
-                        <Link to={"/gallery-site/items/featured/"}>
+                        <Link to={"/items/featured/"}>
                         <img className="preview_image" src={featured_set[0].image} alt={featured_set[0].title} /></Link>
                     )}  
                 </div>          
                 <div className="front_preview">
                     <h6 className="front_preview_h6"> UPCOMING EVENTS </h6>
                     {featured_event && (
-                        <Link to={"/gallery-site/events/"}>
+                        <Link to={"/events/"}>
                         <img className="preview_image" src={featured_event.poster} alt={featured_event.title} /></Link>
                     )}  
                 </div>          

@@ -45,7 +45,7 @@ function App() {
   }
 
   function handleItemClick(item) {
-    navigate(`/gallery-site/items/${item.id}`)
+    navigate(`/items/${item.id}/`)
   }
 
   const displayEmptyResults = () => {

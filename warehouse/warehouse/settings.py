@@ -139,4 +139,34 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+S3_ENABLED = os.getenv('S3_ENABLED', 'False') == 'True'
+LOCAL_SERVE_MEDIA_FILES = os.getenv('LOCAL_SERVE_MEDIA_FILES', str(not S3_ENABLED)) == 'True'
+LOCAL_SERVE_STATIC_FILES = os.getenv('LOCAL_SERVE_STATIC_FILES', str(not S3_ENABLED)) == 'True'
 
+if (not LOCAL_SERVE_MEDIA_FILES or not LOCAL_SERVE_STATIC_FILES) and not S3_ENABLED:
+    raise ValueError('S3_ENABLED must be true if either media or static files are not served locally')
+
+if S3_ENABLED:
+    AWS_ACCESS_KEY_ID = os.getenv('BUCKETEER_AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.getenv('BUCKETEER_AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = os.getenv('BUCKETEER_BUCKET_NAME')
+    AWS_S3_REGION_NAME = os.getenv('BUCKETEER_AWS_REGION')
+    AWS_DEFAULT_ACL = None
+    AWS_S3_SIGNATURE_VERSION = os.getenv('S3_SIGNATURE_VERSION', 's3v4')
+    AWS_S3_ENDPOINT_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+
+if not LOCAL_SERVE_STATIC_FILES:
+    STATIC_DEFAULT_ACL = 'public-read'
+    STATIC_LOCATION = 'static'
+    STATIC_URL = f'{AWS_S3_ENDPOINT_URL}/{STATIC_LOCATION}/'
+    STATICFILES_STORAGE = 'warehouse.utils.storage_backend.StaticStorage'
+
+if not LOCAL_SERVE_MEDIA_FILES:
+    PUBLIC_MEDIA_DEFAULT_ACL = 'public-read'
+    PUBLIC_MEDIA_LOCATION = 'media/public'
+    MEDIA_URL = f'{AWS_S3_ENDPOINT_URL}/{PUBLIC_MEDIA_LOCATION}/'
+    DEFAULT_FILE_STORAGE = 'warehouse.utils.storage_backend.PublicMediaStorage'
+    PRIVATE_MEDIA_DEFAULT_ACL = 'private'
+    PRIVATE_MEDIA_LOCATION = 'media/private'
+    PRIVATE_FILE_STORAGE = 'warehouse.utils.storage_backend.PrivateMediaStorage'

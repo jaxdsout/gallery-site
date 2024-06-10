@@ -32,7 +32,7 @@ function SearchBar ({ results, searchString, handleSearch, handleSubmit, handleC
                 <option value='goods'>GOODS</option>
             </select>
             <button className="search_btn" onClick={handleSubmit}>
-                <Icon name="large search" text="Search" />
+                <Icon name="search" text="Search" />
             </button>
             {results.length > 0 ? (
                 <a href={"/items/all/"}>
