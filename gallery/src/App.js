@@ -12,66 +12,29 @@ import Footer from './partials/Footer';
 import Home from './pages/Home';
 
 import axios from 'axios';
-import React, {useState, useEffect, useCallback} from 'react';
-import {Route, Routes, useNavigate} from 'react-router-dom'
+import React, {useState, useEffect} from 'react';
+import {Route, Routes} from 'react-router-dom'
 
 
 function App() {
-  const navigate = useNavigate();
-
   const [items, setItems] = useState([]);
   const [creators, setCreators] = useState([]);
   const [events, setEvents] = useState([]);
 
-  const [results, setResults] = useState([]);
-  const [searchString, setSearchString] = useState('');
-  const [category, setCategory] = useState('')
-  const [emptyResults, setEmptyResults] = useState(false);
-
-  function handleSearch (event) {
-    setSearchString(event.target.value)
-  }
-
-  function handleSubmit (event) { 
-    if (event.key === 'Enter' || event.type === 'click') {
-      if (searchString.length > 0) {
-        searchItems(searchString)
-      }
-    }
-  }
-
-  function handleCategory (userChoice) {
-    setCategory(userChoice);
-  }
-
-  function handleItemClick(item) {
-    navigate(`/items/${item.id}/`)
-  }
-
-  const displayEmptyResults = () => {
-    setEmptyResults(true)
-  }
-
-  const searchItems = useCallback((searchString) => {
-    const userSearch = encodeURIComponent(searchString)
-    const url = `${process.env.REACT_APP_API_URL}/items/?search=${userSearch}&category=${category}`;
-    axios.get(url)
-      .then((res) => {
-        if (res.data.length === 0) {
-          displayEmptyResults();
-        }
-        setResults(res.data)
-      })
-      .catch((error) => {
-        console.error(error)
-      })
-  }, [category])
-
+  console.log(process.env.REACT_APP_API_URL)
+  
   async function getItems() {
+
+    const config = {
+      headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+      }
+  };
+
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/items/`);
-      const data = response.data;
-      setItems(data);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/items/`, config);
+      setItems(response.data);
     } catch (error) {
       console.error('Error fetching items', error);
     }
@@ -81,6 +44,7 @@ function App() {
     try {
       const response = await axios.get(`${process.env.REACT_APP_API_URL}/creators/`);
       const data = response.data;
+      console.log(response)
       setCreators(data);
     } catch (error) {
       console.error('Error fetching creators', error);
@@ -97,12 +61,12 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    getCreators();
-    getItems();
-    getEvents()
-  }, []);
-
+  
+  getCreators();
+  getItems();
+  getEvents();
+  
+  console.log(creators, items, events)
 
   return (
     <div>
@@ -116,14 +80,6 @@ function App() {
         <Route path="/items/all/" element={
           <AllItems 
             items={items}
-            results={results}
-            onItemClick={handleItemClick}
-            searchString={searchString} 
-            handleSearch={handleSearch}
-            handleSubmit={handleSubmit}
-            handleCategory={handleCategory}
-            emptyResults={emptyResults}
-            category={category}
           />
         }/>
         <Route path="/items/:id/" element={

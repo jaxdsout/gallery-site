@@ -135,10 +135,6 @@ DJOSER = {
 django_heroku.settings(locals())
 
 
-CORS_ALLOW_ALL_ORIGINS = True 
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 S3_ENABLED = os.getenv('S3_ENABLED', 'False') == 'True'
 LOCAL_SERVE_MEDIA_FILES = os.getenv('LOCAL_SERVE_MEDIA_FILES', str(not S3_ENABLED)) == 'True'
 LOCAL_SERVE_STATIC_FILES = os.getenv('LOCAL_SERVE_STATIC_FILES', str(not S3_ENABLED)) == 'True'
@@ -167,6 +163,5 @@ if not LOCAL_SERVE_MEDIA_FILES:
     PUBLIC_MEDIA_LOCATION = 'media/public'
     MEDIA_URL = f'{AWS_S3_ENDPOINT_URL}/{PUBLIC_MEDIA_LOCATION}/'
     DEFAULT_FILE_STORAGE = 'warehouse.utils.storage_backend.PublicMediaStorage'
-    PRIVATE_MEDIA_DEFAULT_ACL = 'private'
-    PRIVATE_MEDIA_LOCATION = 'media/private'
-    PRIVATE_FILE_STORAGE = 'warehouse.utils.storage_backend.PrivateMediaStorage'
+
+CORS_ALLOW_ALL_ORIGINS = True 
