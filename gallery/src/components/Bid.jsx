@@ -24,7 +24,7 @@ function Bid({ item }) {
     };
     if (newBid.amount >= newBid.current_bid + 50) {
       axios
-        .post(`${process.env.REACT_APP_API_URL}/user-bids/`, newBid, {
+        .post(`${process.env.REACT_APP_API_URL}user-bids/`, newBid, {
           headers: { "Content-Type": "application/json" },
         })
         .then(() => {

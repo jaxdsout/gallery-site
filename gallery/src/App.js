@@ -45,7 +45,7 @@ function App() {
 
   async function getEvents() {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/events/`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}events/`);
       const data = response.data;
       setEvents(data);
     } catch (error) {
