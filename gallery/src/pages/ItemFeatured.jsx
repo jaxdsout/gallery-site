@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom"
 
-function FeaturedItems({ items }) {
-    const featured_artist = 'Rolando Daldo'
-    const keyword = ''
+function FeaturedItems({ items, featured_artist, keyword }) {
 
     const featured_set = items.filter(item => item.creator_name === featured_artist && item.description.includes(keyword))
 

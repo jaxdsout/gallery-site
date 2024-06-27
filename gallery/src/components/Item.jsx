@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 
 function Item ({ item, onItemClick }) {
     
@@ -7,7 +8,7 @@ function Item ({ item, onItemClick }) {
   
     return (
       item.image ? (
-        <div className="item_container">
+        <div className='item'>
           <img
             className='item_image'
             src={item.image} 
@@ -19,11 +20,11 @@ function Item ({ item, onItemClick }) {
               {item.title.length > 50
                 ? item.title.substring(0, 40) + '...'
                 : item.title}
+              <span className="current_price">${item.current_price}</span>
             </p> 
-            <p className="current_price">${item.current_price}</p>
           </div> 
         </div>
-      ) : null
+             ) : null
     );
 }
 

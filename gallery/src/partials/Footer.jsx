@@ -5,7 +5,8 @@ function Footer () {
     const tele = '555555555'
     return (
         <div className='footer'>
-                <div className='skeleton'>
+            <div className='info'>
+                 <div className='skeleton'>
                     <h3 className='footer_logo'>THE GALLERY.</h3>
                         <ul className='nav_list'>
                             <li><Link className="nav_item" to={"/items/all/"}>ART</Link></li>
@@ -28,6 +29,8 @@ function Footer () {
                             <li className='nav_item'>SUNDAY: Closed</li>
                         </ul> 
                 </div>
+            </div>
+               
         </div>
     )
 }

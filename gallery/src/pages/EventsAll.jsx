@@ -1,11 +1,12 @@
 function AllEvents ({ events }) {
   const sortedEvents = events.sort((a, b) => new Date(a.time) - new Date(b.time));
+  const filteredEvents = sortedEvents.filter(event => event.id !== 4);
 
     return (
         <div className='events_page'>
           <h3 className='events_logo'>UPCOMING EVENTS.</h3>
           <hr></hr>
-          {sortedEvents.map((event) => (
+          {filteredEvents.map((event) => (
             <div className="event_container" key={event.id}>
               <img className='event_poster'
                 src={event.poster}

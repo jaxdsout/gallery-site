@@ -38,7 +38,7 @@ function AllItems({ items }) {
 
   const searchItems = useCallback((searchString) => {
     const userSearch = encodeURIComponent(searchString)
-    const url = `${process.env.REACT_APP_API_URL}/items/?search=${userSearch}&category=${category}`;
+    const url = `${process.env.REACT_APP_API_URL}items/?search=${userSearch}&category=${category}`;
     axios.get(url)
       .then((res) => {
         if (res.data.length === 0) {
@@ -52,31 +52,35 @@ function AllItems({ items }) {
   }, [category])
 
   return (
-    <div className="items_all">
-      <Fragment>
-        <SearchBar 
-          results={results}
-          searchString={searchString} 
-          handleSearch={handleSearch}
-          handleSubmit={handleSubmit}
-          handleCategory={handleCategory}
+    <div className="art-page">
+      <SearchBar 
+        results={results}
+        searchString={searchString} 
+        handleSearch={handleSearch}
+        handleSubmit={handleSubmit}
+        handleCategory={handleCategory}
       />
-      <div className="empty_results">
-        {emptyResults && <p>No results found for "<span className="search_string">{searchString}</span>" in <span className="search_string">{category}</span>. Showing all results instead.</p>}
-      </div>
-      </Fragment>
-      <div className="items_container">
+      {emptyResults && 
+        <div className="empty_results">
+          <p>No results found for "
+            <span className="search_string">{searchString}</span>" in
+            <span className="search_string">{category}</span>. Showing all results instead.
+          </p>
+        </div>
+      }
+      <div className="items container">
         {results.length > 0 ? (
           results.map((result, index) => (
-            <Item key={index} item={result} onItemClick={handleItemClick} />
+            <Item key={index} item={result} onItemClick={handleItemClick}/>
           ))
         ) : (
           items.map((item, index) => (
-            <Item key={index} item={item} onItemClick={handleItemClick} />
+            <Item key={index} item={item} onItemClick={handleItemClick}/>
           ))
         )}
       </div>
     </div>
+
     )
   }
   

@@ -20,6 +20,9 @@ function App() {
   const [creators, setCreators] = useState([]);
   const [events, setEvents] = useState([]);
 
+  const keyword = 'aerospirit'
+  const featured_artist = "David Rhodes"
+
   console.log(process.env.REACT_APP_API_URL)
   
   async function getItems() {
@@ -68,7 +71,10 @@ function App() {
         <Route path="/" element={
           <Home 
             items={items}
-            events={events}/>
+            events={events}
+            featured_artist={featured_artist}
+            keyword={keyword}
+          />
         }/>
         <Route path="/items/all/" element={
           <AllItems 
@@ -81,7 +87,10 @@ function App() {
           />}
         />
         <Route path="/items/featured/" element={
-          <FeaturedItems items={items}
+          <FeaturedItems 
+            items={items} 
+            featured_artist={featured_artist}
+            keyword={keyword}
           />}
         />
         <Route path="/creators/all/" element={
