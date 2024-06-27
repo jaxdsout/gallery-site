@@ -1,7 +1,6 @@
 import { useState } from "react";
 import PreviousBids from "./BidPrevious";
 import axios from "axios";
-import '../styles/bid.css'
 
 function Bid({ item }) {
   const [bid, setBid] = useState(item.current_price);

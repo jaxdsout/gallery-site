@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import '../styles/creator.css'
 
 function Creator ({creators, items}) {
   const { id } = useParams()

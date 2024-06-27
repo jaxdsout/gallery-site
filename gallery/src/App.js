@@ -1,4 +1,3 @@
-import './App.css';
 import AllItems from './pages/ItemsAll'
 import ItemDetail from './pages/ItemDetail'
 import FeaturedItems from './pages/ItemFeatured'
@@ -24,16 +23,9 @@ function App() {
   console.log(process.env.REACT_APP_API_URL)
   
   async function getItems() {
-
-    const config = {
-      headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-      }
-  };
-
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/items/`, config);
+      console.log(`${process.env.REACT_APP_API_URL}items/`)
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}items/`);
       setItems(response.data);
     } catch (error) {
       console.error('Error fetching items', error);
@@ -42,7 +34,7 @@ function App() {
   
   async function getCreators() {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/creators/`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}creators/`);
       const data = response.data;
       console.log(response)
       setCreators(data);
@@ -61,15 +53,16 @@ function App() {
     }
   }
 
-  
-  getCreators();
-  getItems();
-  getEvents();
+  useEffect(() => {
+    getCreators();
+    getItems();
+    getEvents();
+  }, [])
   
   console.log(creators, items, events)
 
   return (
-    <div>
+    <div className='wrapper'>
       <Header />
       <Routes>
         <Route path="/" element={

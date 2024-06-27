@@ -17,6 +17,7 @@ django-filter = "*"
 django-heroku = "*"
 python-decouple = "*"
 django-storages = {extras = ["boto3"], version = "*"}
+django-environ = "*"
 
 [dev-packages]
 

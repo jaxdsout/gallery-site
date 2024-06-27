@@ -1,9 +1,8 @@
-import '../styles/partials.css';
 import { Link } from 'react-router-dom';
 
 function Footer () {
-    const email = 'info@thegallery.com';
-    const tele = '2815550000'
+    const email = 'info@thegallery.zest';
+    const tele = '555555555'
     return (
         <div className='footer'>
                 <div className='skeleton'>
@@ -16,7 +15,7 @@ function Footer () {
                 </div>
                 <div className='contact_info'>
                     <h3 className="getin_touch"> GET IN TOUCH. </h3>
-                    <Link to={`https://maps.app.goo.gl/9sXqG2uVtjWWJtXA8`}><p className='map_link'> 4411 Montrose Boulevard, Houston, Texas 77006 </p></Link>
+                    <Link to={`https://www.google.com/maps/search/411+Yabba+Zabba+Blvd,+Houston,+Texas+77003/@29.7490957,-95.3541626,15z/`}><p className='map_link'> 411 Yabba Zabba Blvd, Houston, Texas 77003 </p></Link>
                     <Link to={`mailto:${email}`}><p className='contact_links'>Email Us</p></Link>
                     <Link to={`tel:${tele}`}><p className='contact_links'>Call Us</p></Link>
                     <Link to={"http://www.instagram.com/thegallerythegallerythegallery/"}>

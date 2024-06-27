@@ -1,7 +1,5 @@
 import { useParams, Link } from "react-router-dom";
 import Bid from "../components/Bid";
-import '../styles/item.css'
-
 
 function ItemDetail ({items}) {
   const { id } = useParams()

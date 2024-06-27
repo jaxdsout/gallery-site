@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import SearchBar from "../components/SearchBar";
 import { Fragment } from "react";
-import '../styles/item.css'
 
 function AllItems({ items }) {
   const navigate = useNavigate()

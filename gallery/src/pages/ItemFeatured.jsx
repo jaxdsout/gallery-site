@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import '../styles/item.css'
 
 function FeaturedItems({ items }) {
     const featured_artist = 'Rolando Daldo'

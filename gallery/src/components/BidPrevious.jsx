@@ -1,5 +1,3 @@
-import '../styles/bid.css'
-
 function PreviousBids ({ item }) {
     const bids = item.bids;
     return (

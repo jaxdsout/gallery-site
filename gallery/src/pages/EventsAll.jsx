@@ -1,5 +1,3 @@
-import '../styles/event.css'
-
 function AllEvents ({ events }) {
   const sortedEvents = events.sort((a, b) => new Date(a.time) - new Date(b.time));
 

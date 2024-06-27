@@ -1,6 +1,4 @@
-import "../styles/searchbar.css"
 import { Icon } from "semantic-ui-react";
-
 
 function SearchBar ({ results, searchString, handleSearch, handleSubmit, handleCategory }) {
     

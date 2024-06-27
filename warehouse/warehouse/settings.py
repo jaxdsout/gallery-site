@@ -1,6 +1,5 @@
 from pathlib import Path
 import os
-import dotenv
 import dj_database_url
 import psycopg2
 import django_heroku
@@ -9,19 +8,21 @@ import django_heroku
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 dotenv_file = os.path.join(BASE_DIR, ".env")
-if os.path.isfile(dotenv_file):
-    dotenv.load_dotenv(dotenv_file)
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['SECRET_KEY']
+DEBUG = os.environ.get('DJANGO_ENV') == 'development'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['gallery-warehouse-6e7db4cb0263.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -45,10 +46,10 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    # 'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'corsheaders.middleware.CorsMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -76,8 +77,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'warehouse.wsgi.application'
 
-DATABASES = {}
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+DATABASES = {
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default=os.environ['DATABASE_URL'],
+        conn_max_age=600
+    )
+}
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -132,36 +138,6 @@ DJOSER = {
     }
 }
 
-django_heroku.settings(locals())
 
-
-S3_ENABLED = os.getenv('S3_ENABLED', 'False') == 'True'
-LOCAL_SERVE_MEDIA_FILES = os.getenv('LOCAL_SERVE_MEDIA_FILES', str(not S3_ENABLED)) == 'True'
-LOCAL_SERVE_STATIC_FILES = os.getenv('LOCAL_SERVE_STATIC_FILES', str(not S3_ENABLED)) == 'True'
-
-if (not LOCAL_SERVE_MEDIA_FILES or not LOCAL_SERVE_STATIC_FILES) and not S3_ENABLED:
-    raise ValueError('S3_ENABLED must be true if either media or static files are not served locally')
-
-if S3_ENABLED:
-    AWS_ACCESS_KEY_ID = os.getenv('BUCKETEER_AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = os.getenv('BUCKETEER_AWS_SECRET_ACCESS_KEY')
-    AWS_STORAGE_BUCKET_NAME = os.getenv('BUCKETEER_BUCKET_NAME')
-    AWS_S3_REGION_NAME = os.getenv('BUCKETEER_AWS_REGION')
-    AWS_DEFAULT_ACL = None
-    AWS_S3_SIGNATURE_VERSION = os.getenv('S3_SIGNATURE_VERSION', 's3v4')
-    AWS_S3_ENDPOINT_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
-
-if not LOCAL_SERVE_STATIC_FILES:
-    STATIC_DEFAULT_ACL = 'public-read'
-    STATIC_LOCATION = 'static'
-    STATIC_URL = f'{AWS_S3_ENDPOINT_URL}/{STATIC_LOCATION}/'
-    STATICFILES_STORAGE = 'warehouse.utils.storage_backend.StaticStorage'
-
-if not LOCAL_SERVE_MEDIA_FILES:
-    PUBLIC_MEDIA_DEFAULT_ACL = 'public-read'
-    PUBLIC_MEDIA_LOCATION = 'media/public'
-    MEDIA_URL = f'{AWS_S3_ENDPOINT_URL}/{PUBLIC_MEDIA_LOCATION}/'
-    DEFAULT_FILE_STORAGE = 'warehouse.utils.storage_backend.PublicMediaStorage'
 
 CORS_ALLOW_ALL_ORIGINS = True 
