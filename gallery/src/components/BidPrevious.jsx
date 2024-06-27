@@ -15,6 +15,8 @@ function PreviousBids ({ item }) {
                     </div>
                 ))
             )}
+
+            
         </div>
     );
 }

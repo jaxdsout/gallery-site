@@ -22,48 +22,32 @@ function App() {
 
   const keyword = 'aerospirit'
   const featured_artist = "David Rhodes"
-
-  console.log(process.env.REACT_APP_API_URL)
   
-  async function getItems() {
+  async function fetchData() {
     try {
-      console.log(`${process.env.REACT_APP_API_URL}items/`)
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}items/`);
-      setItems(response.data);
+      const itemsPromise = axios.get(`${process.env.REACT_APP_API_URL}items/`);
+      const creatorsPromise = axios.get(`${process.env.REACT_APP_API_URL}creators/`);
+      const eventsPromise = axios.get(`${process.env.REACT_APP_API_URL}events/`);
+  
+      const [itemsResponse, creatorsResponse, eventsResponse] = await Promise.all([
+        itemsPromise,
+        creatorsPromise,
+        eventsPromise,
+      ]);
+  
+      setItems(itemsResponse.data);
+      setCreators(creatorsResponse.data);
+      setEvents(eventsResponse.data);
     } catch (error) {
-      console.error('Error fetching items', error);
+      console.error('Error fetching data', error);
     }
   }
   
-  async function getCreators() {
-    try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}creators/`);
-      const data = response.data;
-      console.log(response)
-      setCreators(data);
-    } catch (error) {
-      console.error('Error fetching creators', error);
-    }
-  }
-
-  async function getEvents() {
-    try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}events/`);
-      const data = response.data;
-      setEvents(data);
-    } catch (error) {
-      console.error('Error fetching creators', error);
-    }
-  }
-
   useEffect(() => {
-    getCreators();
-    getItems();
-    getEvents();
-  }, [])
+    fetchData();
+    console.log("firing use effect")
+  }, []);
   
-  console.log(creators, items, events)
-
   return (
     <div className='wrapper'>
       <Header />
