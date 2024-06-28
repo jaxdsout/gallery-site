@@ -40,7 +40,6 @@ code {
   padding: 1.25rem;
   height: 16rem;
   flex-shrink: 0;
-
   --mask:
   radial-gradient(34.99px at 50% calc(100% - 48px), #000 99%, #0000 101%) calc(50% - 60px) 0/120px 100%,
   radial-gradient(34.99px at 50% calc(100% + 18px), #0000 99%, #000 101%) 50% calc(100% - 30px)/120px 100% repeat-x;
@@ -50,7 +49,11 @@ code {
 }
 
 .footer {
-  background-color: rgb(10, 10, 10) !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-bottom: 8rem;
+  background-color: rgb(132, 132, 132) !important;
   padding: 1rem 2rem 3rem 2rem;
   height: 9rem;
   overflow: hidden;
@@ -63,13 +66,6 @@ code {
   flex-shrink: 0;
 }
 
-.info {
-  display: flex;
-  flex-direction: row;
-  align-items:center ;
-  justify-content: space-around;
-  padding-top: 8rem;
-}
 
 .footer:hover {
   height: 31rem;
@@ -101,7 +97,7 @@ code {
 }
 
 .search_bar_input {
-  width: 40rem !important;
+  width: 40rem;
 }
 
 .reset_btn {
@@ -149,27 +145,24 @@ select {
 
 /* HEADER */
 
-.buttons {
+.header_buttons {
   margin-right: 2rem;
   margin-top: 3rem;
 }
 
-.nav_button {
+.cbutton {
   border: rgb(31, 31, 31) solid 2px !important;
   background-color: rgb(15, 15, 15) !important;
   font-weight: 600 !important;
   letter-spacing: 0.2rem;
+  margin: 0rem .5rem 0rem .5rem;
 }
 
-.art {
-  margin-right: 1.5rem;
-}
-
-.nav_button:hover {
+.cbutton:hover {
   border: white solid 2px !important;
 }
 
-.nav_button:active {
+.cbutton:active {
   -webkit-animation: pulsate-bck 0.5s ease-in-out both;
         animation: pulsate-bck 0.5s ease-in-out both;
 }
@@ -177,7 +170,7 @@ select {
 
 .logo {
   margin-left: 2rem;
-  margin-top: 3rem !important;
+  margin-top: 2rem;
   color: white;
   letter-spacing: 0.3rem;
   font-weight: 600;
@@ -261,6 +254,11 @@ select {
 
 /* FOOTER */
 
+.foot {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8rem;
+}
 
 .iglogo {
   width: 3rem;
@@ -268,11 +266,6 @@ select {
 
 .iglogo:hover {
   cursor: pointer;
-}
-
-.contact_info {
-  display: flex;
-  flex-direction: column;
 }
 
 .contact_links {
@@ -302,20 +295,18 @@ button {
   text-transform: lowercase;
 }
 
-.nav_item, .contact_links {
+.nav_item {
   font-size: 1.5rem;
   font-weight: 700;
   color: whitesmoke;
   text-transform: uppercase;
+  margin-bottom: 1rem;
 }
 
 .hours {
   list-style-type: none;
 }
 
-.map_link {
-  margin-bottom: 1rem !important;
-}
 
 
 /* ITEM COMPONENT */
@@ -343,7 +334,8 @@ button {
   height: 70rem;
   justify-content:center;
   align-items: flex-start;
-  scrollbar-color: rgb(0, 0, 0) rgba(0, 0, 0, 0);}
+  scrollbar-color: rgb(0, 0, 0) rgba(0, 0, 0, 0);
+}
 
 .item {
   display: flex;
@@ -413,42 +405,48 @@ button {
 
 /* ITEM DETAILS */
 
-.item_creator_name {
+.detail_creator_name {
   text-transform: uppercase;
   font-size: 2rem;
-  color: white;
   font-weight: 700;
 }
 
-.item_detail {
+.detail_creator_name:hover {
+  color: black !important;
+}
+
+.detail_wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   padding-bottom: 10rem;
   margin-top: 3rem;
+  
 }
 
-.item_detail_image {
-  height: 40rem !important;
-  box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.483);
-}
-
-.item_detail_right {
+.detail_middle {
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
-.item_detail_title {
+.detail_image {
+  height: 40rem !important;
+  box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.483);
+  margin-bottom: 2rem;
+}
+
+.detail_title {
   color: white;
-  font-size: 5rem !important;
+  font-size: 5rem;
 }
 
-.item_descriptions {
+.detail_descriptions {
   margin-left: 4rem;
   color: white;
 }
 
-.current_price_item {
+.detail_current_price {
   font-weight: 800;
   font-size: 3rem;
   color: white;
@@ -456,6 +454,10 @@ button {
 
 .dollas {
   color: gray
+}
+
+.back_all {
+  margin-bottom: 1rem;
 }
 
 
@@ -608,27 +610,20 @@ a {
 
 /* BIDS & PREVIOUS BIDS */
 
-.bid_component {
+
+.previous_wrapper {
   display: flex;
   flex-direction: column;
 }
 
-.bid_form {
-  display: flex;
-  flex-direction: row;
-}
-
 .previous_bids {
   overflow-y: scroll;
-  height: 20rem;
   background-color: rgb(15, 15, 15);
   padding: 3rem;
-  margin-bottom: 1.5rem;
+  margin-top: 2rem;
+  scrollbar-color: rgb(255, 255, 255) rgba(0, 0, 0, 0);
 }
 
-.previous_bid_detail {
-  padding: 30rem auto !important;
-}
 
 .prev_button {
   background: none !important;
@@ -645,13 +640,13 @@ a {
 }
 
 .make_bid {
-  margin-right: 4rem;
+  margin-right: 1rem;
 }
 
 .no_bids {
   text-align: center;
   margin-top: 3rem;
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
 
@@ -660,6 +655,7 @@ a {
   font-weight: 700;
   font-size: .75rem;
   display: block;
+  text-align: center;
 
 }
 
@@ -712,11 +708,91 @@ a {
   margin-top: .25rem;
 }
 
-
-
-
 .container { 
     padding: 0 !important;
+}
+
+
+@media only screen and (max-width: 450px) {
+  .logo {
+    font-size: 1rem !important;
+    margin-top: 4rem;
+  }
+
+}
+
+
+
+@media only screen and (max-width: 767px) {
+  .wrapper {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .header {
+    justify-content: space-evenly;
+    transition: none !important;
+    height: 18rem;
+
+  }
+
+  .header_buttons {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .header:hover {
+    height: 18rem;
+  }
+
+  .logo {
+    margin-left: 2rem;
+    margin-top: 3rem;
+    color: white;
+    letter-spacing: 0.3rem;
+    font-size: 3rem;
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    transition: none;
+    padding: 4rem 2rem 0rem 2rem;
+  }
+
+  .footer:hover {
+    height: auto;
+  }
+
+  .item_image {
+    max-width: 15rem;
+  }
+
+  .item_detail {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10rem;
+    margin-top: 3rem;
+    align-items: center;
+  }
+
+  .detail_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .detail_title {
+    color: white;
+    font-size: 3rem;
+  }
+
+
+  .foot {
+    margin-top: 3rem;
+  }
+
 }
 
 @-webkit-keyframes slide-right {

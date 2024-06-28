@@ -51,6 +51,17 @@ function AllItems({ items }) {
       })
   }, [category])
 
+  const shuffle = (array) => {
+    let newArray = array.slice();
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+  };
+
+  const shuffledResults = results.length > 0 ? shuffle(results) : shuffle(items);
+
   return (
     <div className="art-page">
       <SearchBar 
@@ -69,15 +80,14 @@ function AllItems({ items }) {
         </div>
       }
       <div className="items container">
-        {results.length > 0 ? (
-          results.map((result, index) => (
-            <Item key={index} item={result} onItemClick={handleItemClick}/>
-          ))
-        ) : (
-          items.map((item, index) => (
-            <Item key={index} item={item} onItemClick={handleItemClick}/>
-          ))
-        )}
+      {shuffledResults ? (
+        shuffledResults.map((item, index) => (
+          <Item key={index} item={item} onItemClick={handleItemClick} />
+        ))
+      ) : (
+        <></>
+      )
+      }
       </div>
     </div>
 

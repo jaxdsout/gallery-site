@@ -1,15 +1,9 @@
 import { useState } from "react";
-import PreviousBids from "./BidPrevious";
 import axios from "axios";
 
 function Bid({ item }) {
   const [bid, setBid] = useState(item.current_price);
-  const [prevBids, setPrevBids] = useState(false);
   const [lowBid, setLowBid] = useState(false);
-
-  const togglePrevBids = () => {
-    setPrevBids(!prevBids);
-  };
 
   const handleInputClick = (e) => {
     e.target.select();
@@ -39,8 +33,10 @@ function Bid({ item }) {
   };
   
   return (
-    <div className="bid_component">
-      <div className="bid_form">
+    <div className="bid">
+      {lowBid && (
+        <p className="bid_more">YOU NEED TO BID MORE. THE MINIMUM INCREMENT IS $50. </p>
+      )}
         <form onSubmit={makeBid}>
           <input
             type="number"
@@ -49,23 +45,10 @@ function Bid({ item }) {
             onClick={handleInputClick}
             onChange={(event) => setBid(event.target.value)}
           />
-          <button className="nav_button make_bid" type="submit">
+          <button className="cbutton" type="submit">
             MAKE BID
           </button>
         </form>
-        {lowBid && (
-          <p className="bid_more">YOU NEED TO BID MORE. <br></br>THE MINIMUM INCREMENT IS $50. </p>
-      )}
-      </div>
-      <div>
-        <button className="nav_button prev_button" onClick={togglePrevBids}>
-          PREVIOUS BIDS
-        </button>
-        {prevBids && 
-          <PreviousBids item={item}/>
-        }
-      </div>
-     
     </div>
   );
 }
