@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import 'milligram'
+import 'milligram';
+import 'semantic-ui-css/semantic.min.css';
 import reportWebVitals from './reportWebVitals';
 import { HashRouter } from 'react-router-dom';
 

@@ -4,6 +4,7 @@ import axios from "axios";
 function Bid({ item }) {
   const [bid, setBid] = useState(item.current_price);
   const [lowBid, setLowBid] = useState(false);
+  const minBid = Math.ceil(item.current_price * 1.05);
 
   const handleInputClick = (e) => {
     e.target.select();
@@ -16,7 +17,7 @@ function Bid({ item }) {
       item: item.id,
       current_bid: item.current_price,
     };
-    if (newBid.amount >= newBid.current_bid + 50) {
+    if (newBid.amount >= minBid) {
       axios
         .post(`${process.env.REACT_APP_API_URL}user-bids/`, newBid, {
           headers: { "Content-Type": "application/json" },
@@ -35,7 +36,10 @@ function Bid({ item }) {
   return (
     <div className="bid">
       {lowBid && (
-        <p className="bid_more">YOU NEED TO BID MORE. THE MINIMUM INCREMENT IS $50. </p>
+        <div className="low_bid">
+          <p className="bid_more">YOU NEED TO BID MORE. </p>
+          <p className="bid_more">THE MININUM BID AMOUNT IS CURRENTLY <b>${minBid}</b></p>
+        </div>
       )}
         <form onSubmit={makeBid}>
           <input
