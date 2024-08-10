@@ -8,14 +8,14 @@ function Home ({ items, events, featured_artist, keyword }) {
     return (
         <div className="home_page">
             <div>
-                <img className="mainbanner" src="https://warehouse-lmvk.onrender.com/media/items/header_copy.png" alt="banner" />
+                <img className="mainbanner" src="https://warehouse-bkt-0810.s3.amazonaws.com/header_copy.png" alt="banner" />
             </div>
             <div className="sub_banner">
                 <div className="front_preview">
                     <h6 className="front_preview_h6"> FEATURED COLLECTION </h6>
                     {featured_set && (
                         <Link to={"/items/featured/"}>
-                        <img className="preview_image" src="https://warehouse-lmvk.onrender.com/media/items/rhodes_skybound.png" alt={featured_set.title} /></Link>
+                        <img className="preview_image" src="https://warehouse-bkt-0810.s3.amazonaws.com/rhodes_aerospirit.png" alt={featured_set.title} /></Link>
                     )}  
                 </div>          
                 <div className="front_preview">
