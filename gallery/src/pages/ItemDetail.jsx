@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import Bid from "../components/Bid";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Modal, Button } from "semantic-ui-react";
 import { parseISO } from "date-fns";
 
@@ -9,12 +9,16 @@ function ItemDetail ({items}) {
   const { id } = useParams()
   const item = items.find(item => item.id === parseInt(id))
   const [showModal, setShowModal] = useState(false)
+  const [daysLeft, setDaysLeft] = useState(null)
   
-  const now = new Date();
-  const listingEndDate = parseISO(item.listing_end);
-  const countdown = listingEndDate - now;
-  const daysLeft = Math.floor(countdown / (1000 * 60 * 60 * 24));
-  
+  function handleCountdown () {
+    const now = new Date();
+    const listingEndDate = parseISO(item.listing_end);
+    const countdown = listingEndDate - now;
+    const daysLeft = Math.floor(countdown / (1000 * 60 * 60 * 24));
+    setDaysLeft(daysLeft)
+  }
+
   const handlePrevBid = () => {
     setShowModal(true);
   };
@@ -22,6 +26,12 @@ function ItemDetail ({items}) {
   const handleCloseModal = () => {
     setShowModal(false);
   };
+
+  useEffect(() => {
+    if (item) {
+      handleCountdown()
+    }
+  }, [item])
 
     return (
       item ? (
@@ -41,24 +51,28 @@ function ItemDetail ({items}) {
               <li>{item.dimensions}</li>
               <li>{item.materials_used}</li>
             </ul>
-            {
-              daysLeft < 0 ? (
-                <h3 className="detail_current_price">SOLD PRICE: <span className="dollas">${item.current_price} USD</span></h3>
-              ) : (
-                <h3 className="detail_current_price">CURRENT PRICE: <span className="dollas">${item.current_price} USD</span></h3>
-              )
-            }
-            <Bid item={item} daysLeft={daysLeft}/>
+            {daysLeft !== null && (
+          <>
+            {daysLeft < 0 ? (
+              <h3 className="detail_current_price">
+                SOLD PRICE: <span className="dollas">${item.current_price} USD</span>
+              </h3>
+            ) : (
+              <h3 className="detail_current_price">
+                CURRENT PRICE: <span className="dollas">${item.current_price} USD</span>
+              </h3>
+            )}
+            <Bid item={item} daysLeft={daysLeft} />
             <div className="time_container">
-              <i class="hourglass half icon"></i>
-              {
-                daysLeft < 0 ? (
-                  <p>AUCTION ENDED {-daysLeft} DAYS AGO </p>
-                ) : (
-                  <p> ONLY {daysLeft} DAYS REMAINING UNTIL AUCTION ENDS </p>
-                )
-              }
+              <i className="hourglass half icon"></i>
+              {daysLeft < 0 ? (
+                <p>AUCTION ENDED {-daysLeft} DAYS AGO </p>
+              ) : (
+                <p> ONLY {daysLeft} DAYS REMAINING UNTIL AUCTION ENDS </p>
+              )}
             </div>
+          </>
+        )}
             <button className="prev_bids" onClick={handlePrevBid}>
               PREVIOUS BIDS
             </button>

@@ -34,8 +34,9 @@ function Bid({ item, daysLeft }) {
   };
 
   return (
-    <div>
+    <div className="bid_component">
       {daysLeft > 0 ? (
+        <>
         <form onSubmit={makeBid} className="bid_form">
           <input
             type="number"
@@ -47,15 +48,16 @@ function Bid({ item, daysLeft }) {
           <button className="make_bid" type="submit">
             <i className="arrow alternate circle up icon"></i>
           </button>
-          {lowBid && (
+        </form>
+        {lowBid && (
             <div className="low_bid">
               <p className="bid_more">YOU NEED TO BID MORE.</p>
               <p className="bid_more">
-                THE MINIMUM BID AMOUNT IS CURRENTLY SET AT <b>${minBid}</b>
+                THE MINIMUM BID AMOUNT IS CURRENTLY SET AT <b>${minBid} USD</b>
               </p>
             </div>
-          )}
-        </form>
+        )}
+        </>
       ) : (
         null
       )}
