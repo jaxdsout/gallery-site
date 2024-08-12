@@ -22,8 +22,8 @@ function Footer () {
             </div>
             <div className='foot'>
                 <h3 className='footer_h3'> HOURS. </h3>
-                <p className='footer_nav'>MONDAY - SATURDAY: 10am - 5pm </p>
-                <p className='footer_nav'>SUNDAY: Closed</p>
+                <p className='footer_nav hours'>MONDAY - SATURDAY: 10am - 5pm </p>
+                <p className='footer_nav hours'>SUNDAY: Closed</p>
             </div>
                
         </div>

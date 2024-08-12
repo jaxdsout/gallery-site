@@ -79,7 +79,7 @@ function AllItems({ items }) {
           </p>
         </div>
       }
-      <div className="items">
+      <div className="all_items">
       {shuffledResults ? (
         shuffledResults.map((item, index) => (
           <Item key={index} item={item} onItemClick={handleItemClick} />

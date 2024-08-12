@@ -34,14 +34,8 @@ function Bid({ item }) {
   };
   
   return (
-    <div className="bid">
-      {lowBid && (
-        <div className="low_bid">
-          <p className="bid_more">YOU NEED TO BID MORE. </p>
-          <p className="bid_more">THE MININUM BID AMOUNT IS CURRENTLY <b>${minBid}</b></p>
-        </div>
-      )}
-        <form onSubmit={makeBid}>
+    <div>
+        <form onSubmit={makeBid} className="bid_form">
           <input
             type="number"
             value={bid}
@@ -49,10 +43,16 @@ function Bid({ item }) {
             onClick={handleInputClick}
             onChange={(event) => setBid(event.target.value)}
           />
-          <button className="cbutton" type="submit">
-            MAKE BID
+          <button className="make_bid" type="submit">
+            <i class="arrow alternate circle up icon"></i>
           </button>
         </form>
+        {lowBid && (
+        <div className="low_bid">
+          <p className="bid_more">YOU NEED TO BID MORE. </p>
+          <p className="bid_more">THE MININUM BID AMOUNT IS CURRENTLY <b>${minBid}</b></p> 
+        </div>
+      )}
     </div>
   );
 }

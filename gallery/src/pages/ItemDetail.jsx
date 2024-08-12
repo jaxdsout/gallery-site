@@ -2,12 +2,18 @@ import { useParams, Link } from "react-router-dom";
 import Bid from "../components/Bid";
 import { useState } from "react";
 import { Modal, Button } from "semantic-ui-react";
+import { format } from "date-fns";
 
 
 function ItemDetail ({items}) {
   const { id } = useParams()
   const item = items.find(item => item.id === parseInt(id))
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false)
+  
+  const now = new Date();
+  const formattedDate = format(now, 'yyyy-MM-dd');
+  const countdown = item.listing_end - formattedDate
+  console.log(countdown)
 
   const handlePrevBid = () => {
     setShowModal(true);
@@ -21,11 +27,13 @@ function ItemDetail ({items}) {
       item ? (
         <div className="detail_wrapper">
           <div className="detail_left">
-            <Link to={"/items/all/"}><button className="prev_button">BACK TO ALL</button></Link>
+            <Link to={"/items/all/"}><i className="angle double left icon back_button"></i></Link>
             <img className="detail_image" src={item.image} alt={item.title}/>
           </div>
           <div className="detail_right">
-            <h3 className="detail_title">"{item.title}"</h3>
+            <div className="dright_header">
+              <h3 className="detail_title">"{item.title}"</h3>
+            </div>
             <h3><Link className="detail_creator_name" to={`/creators/${item.creator_id}`}>{item.creator_name}</Link></h3>
             <p>{item.description}</p>
             <ul className="detail_descriptions">
@@ -35,6 +43,10 @@ function ItemDetail ({items}) {
             </ul>
             <h3 className="detail_current_price">CURRENT PRICE: <span className="dollas">$ {item.current_price}</span></h3>
             <Bid item={item}/>
+            <div className="time_container">
+              <i class="hourglass half icon"></i>
+              <p> ONLY {} REMAINING UNTIL AUCTION ENDS </p>
+            </div>
             <button className="prev_button" onClick={handlePrevBid}>
               PREVIOUS BIDS
             </button>
