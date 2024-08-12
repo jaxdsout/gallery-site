@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-function Bid({ item }) {
+function Bid({ item, daysLeft }) {
   const [bid, setBid] = useState(item.current_price);
   const [lowBid, setLowBid] = useState(false);
   const minBid = Math.ceil(item.current_price * 1.05);
@@ -29,12 +29,13 @@ function Bid({ item }) {
           console.log(error);
         });
     } else {
-      setLowBid(!lowBid);
+      setLowBid(true);
     }
   };
-  
+
   return (
     <div>
+      {daysLeft > 0 ? (
         <form onSubmit={makeBid} className="bid_form">
           <input
             type="number"
@@ -44,17 +45,23 @@ function Bid({ item }) {
             onChange={(event) => setBid(event.target.value)}
           />
           <button className="make_bid" type="submit">
-            <i class="arrow alternate circle up icon"></i>
+            <i className="arrow alternate circle up icon"></i>
           </button>
+          {lowBid && (
+            <div className="low_bid">
+              <p className="bid_more">YOU NEED TO BID MORE.</p>
+              <p className="bid_more">
+                THE MINIMUM BID AMOUNT IS CURRENTLY SET AT <b>${minBid}</b>
+              </p>
+            </div>
+          )}
         </form>
-        {lowBid && (
-        <div className="low_bid">
-          <p className="bid_more">YOU NEED TO BID MORE. </p>
-          <p className="bid_more">THE MININUM BID AMOUNT IS CURRENTLY <b>${minBid}</b></p> 
-        </div>
+      ) : (
+        null
       )}
     </div>
   );
 }
 
 export default Bid;
+

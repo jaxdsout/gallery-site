@@ -4,13 +4,11 @@ import { Link } from "react-router-dom";
 function CreatorsAll({creators}) {
   return (
     <div className="creators_page">
-      <h3 className="creators_logo">CREATORS. </h3>
+      <h3 className="creator_type">CREATORS</h3>
       {creators.map((creator) => (
-        <ul key={creator.id}>
-          <li className="nav_creator">
+          <div className="creator_name_all">
             <Link to={`/creators/${creator.id}`}>{creator.name}</Link>
-          </li>
-        </ul>
+          </div>
       ))}
     </div>
   )

@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import Bid from "../components/Bid";
 import { useState } from "react";
 import { Modal, Button } from "semantic-ui-react";
-import { format } from "date-fns";
+import { parseISO } from "date-fns";
 
 
 function ItemDetail ({items}) {
@@ -11,10 +11,10 @@ function ItemDetail ({items}) {
   const [showModal, setShowModal] = useState(false)
   
   const now = new Date();
-  const formattedDate = format(now, 'yyyy-MM-dd');
-  const countdown = item.listing_end - formattedDate
-  console.log(countdown)
-
+  const listingEndDate = parseISO(item.listing_end);
+  const countdown = listingEndDate - now;
+  const daysLeft = Math.floor(countdown / (1000 * 60 * 60 * 24));
+  
   const handlePrevBid = () => {
     setShowModal(true);
   };
@@ -41,13 +41,25 @@ function ItemDetail ({items}) {
               <li>{item.dimensions}</li>
               <li>{item.materials_used}</li>
             </ul>
-            <h3 className="detail_current_price">CURRENT PRICE: <span className="dollas">$ {item.current_price}</span></h3>
-            <Bid item={item}/>
+            {
+              daysLeft < 0 ? (
+                <h3 className="detail_current_price">SOLD PRICE: <span className="dollas">${item.current_price} USD</span></h3>
+              ) : (
+                <h3 className="detail_current_price">CURRENT PRICE: <span className="dollas">${item.current_price} USD</span></h3>
+              )
+            }
+            <Bid item={item} daysLeft={daysLeft}/>
             <div className="time_container">
               <i class="hourglass half icon"></i>
-              <p> ONLY {} REMAINING UNTIL AUCTION ENDS </p>
+              {
+                daysLeft < 0 ? (
+                  <p>AUCTION ENDED {-daysLeft} DAYS AGO </p>
+                ) : (
+                  <p> ONLY {daysLeft} DAYS REMAINING UNTIL AUCTION ENDS </p>
+                )
+              }
             </div>
-            <button className="prev_button" onClick={handlePrevBid}>
+            <button className="prev_bids" onClick={handlePrevBid}>
               PREVIOUS BIDS
             </button>
             <Modal open={showModal} onClose={handleCloseModal}>
