@@ -1,7 +1,6 @@
 import { Icon } from "semantic-ui-react";
 
-function SearchBar ({ results, searchString, handleSearch, handleSubmit, handleCategory }) {
-    
+function SearchBar({ searchString, handleSearch, handleSubmit, handleCategory }) {
 
     const handleUserChoice = (event) => {
         const userChoice = event.target.value;
@@ -32,14 +31,8 @@ function SearchBar ({ results, searchString, handleSearch, handleSubmit, handleC
             <button className="search_btn" onClick={handleSubmit}>
                 <Icon name="search" text="Search" />
             </button>
-            {results.length > 0 ? (
-                <a href={"/items/all/"}>
-                    <button className="reset_btn"> RESET </button> 
-                </a>
-            ) : null }
         </div>
-       
     )
 }
 
-export default SearchBar
+export default SearchBar;

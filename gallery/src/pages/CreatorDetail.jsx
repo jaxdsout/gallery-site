@@ -11,13 +11,14 @@ function Creator ({creators, items}) {
       <div className="creator_container">
         <div className="creator_header">
           <Link to={"/creators/all/"}><i className="angle double left icon back_button"></i></Link>
-          <div className="creator_sect">
-            <h3 className="creator_type">{creator.name}</h3>
+          <h3 className="creator_type">{creator.name}</h3>
             <div className="creator_details">
               <p>{creator.about}</p>
               <p><Link className="creator_website" to={creator.website}>{creator.role.toLowerCase()} website</Link></p>            
             </div>
-          </div>
+          {/* <div className="creator_sect">
+          
+          </div> */}
         
         </div>
         <h3 className="creator_type list"> LIST OF ITEMS: </h3>
