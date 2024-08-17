@@ -1,13 +1,18 @@
 import { useState } from "react";
+import { Modal, Button } from "semantic-ui-react";
 import axios from "axios";
 
 function Bid({ item, daysLeft }) {
   const [bid, setBid] = useState(item.current_price);
-  const [lowBid, setLowBid] = useState(false);
   const minBid = Math.ceil(item.current_price * 1.05);
+  const [showModal, setShowModal] = useState(false)
 
   const handleInputClick = (e) => {
     e.target.select();
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
   const makeBid = (e) => {
@@ -29,7 +34,7 @@ function Bid({ item, daysLeft }) {
           console.log(error);
         });
     } else {
-      setLowBid(true);
+      setShowModal(true);
     }
   };
 
@@ -49,14 +54,18 @@ function Bid({ item, daysLeft }) {
             <i className="arrow alternate circle up icon"></i>
           </button>
         </form>
-        {lowBid && (
-            <div className="low_bid">
-              <p className="bid_more">YOU NEED TO BID MORE.</p>
-              <p className="bid_more">
-                THE MINIMUM BID AMOUNT IS CURRENTLY SET AT <b>${minBid} USD</b>
-              </p>
-            </div>
-        )}
+        <Modal open={showModal} onClose={handleCloseModal}>
+          <Modal.Header>Mininum Bid Error</Modal.Header>
+          <Modal.Content>
+            <p className="bid_more">YOU NEED TO BID MORE.</p>
+            <p className="bid_more">
+              THE MINIMUM BID AMOUNT IS CURRENTLY SET AT <b>${minBid} USD</b>
+            </p>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button onClick={handleCloseModal}>CLOSE</Button>
+          </Modal.Actions>
+        </Modal>
         </>
       ) : (
         null

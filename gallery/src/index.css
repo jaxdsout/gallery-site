@@ -1,9 +1,3 @@
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
 body {
   font-family: 'Manrope', sans-serif !important;
   -webkit-font-smoothing: antialiased;
@@ -23,7 +17,7 @@ p {
 }
 
 a {
-  color: whitesmoke !important;
+  color: white !important;
 }
 
 button {
@@ -238,7 +232,6 @@ button:hover {
   display: flex;
   flex-direction: row;
   padding: 1rem 1rem 3rem 1rem;
-  width: 60rem;
   justify-content: center;
 }
 
@@ -284,7 +277,6 @@ input::placeholder {
   background-color: rgb(93, 93, 93) !important;
   padding: 1rem;
   font-size: 1.1rem;
-  width: 12rem;
 }
 
 select {
@@ -390,7 +382,7 @@ select {
 
 /* ITEM DETAILS */
 
-.detail_wrapper {
+.detail_page {
   display: flex;
   flex-direction: row;
   padding-bottom: 2rem;
@@ -420,19 +412,17 @@ select {
   display: flex;
   flex-direction: column;
   box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.483);
-  margin: 0 .5rem 0 .5rem;
-
-
 }
 
 .dright_header { 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .detail_title {
   color: white;
   font-size: 3rem;
+  margin-bottom: -1rem;
 }
 
 .back_button {
@@ -489,7 +479,6 @@ form {
 }
 
 .bid_input {
-  width: 20rem !important;
   margin-right: 1rem;
   font-size: 1.5rem;
   background-color: aliceblue !important;
@@ -518,8 +507,8 @@ form {
 }
 
 .bid_more {
-  color: white;
-  font-weight: 700;
+  color: black;
+  font-weight: 500;
   font-size: 1rem;
   display: block;
   text-align: center;
@@ -779,8 +768,13 @@ form {
   margin-top: -.5rem !important;
 }
 
-.event_time, .event_description, .event_creator {
+.event_description, .event_creator {
   margin-top: .25rem;
+}
+
+.event_time {
+  padding-bottom: .5rem;
+  font-weight: 700;
 }
 
 @media only screen and (max-width: 430px) {
@@ -790,12 +784,7 @@ form {
 }
 
 @media only screen and (max-width: 767px) {
-  .wrapper {
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .header {
+  .navbar {
     justify-content: space-evenly;
     transition: none !important;
     height: 18rem;
@@ -833,10 +822,11 @@ form {
     align-items: center;
   }
 
-  .detail_wrapper {
+  .detail_page {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
 
   .detail_title {
@@ -850,7 +840,10 @@ form {
 
   .detail_right {
     padding: 0;
+    justify-content: center;
+    align-items: center;
   }
+
 
   .foot {
     margin-top: 3rem;
@@ -865,6 +858,10 @@ form {
 
   .nav {
     margin-bottom: .5rem;
+  }
+
+  .event_title {
+    font-size: 2rem;
   }
 }
 
