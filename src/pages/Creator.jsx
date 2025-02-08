@@ -9,8 +9,6 @@ function Creator ({creators, items}) {
   return (
     creator ? (
       <div className="flex flex-col md:flex-row items-center md:items-start justify-center">
-     
-
         <div className="flex flex-col items-center justify-center">
           <Link to={"/creators/all/"} className="mb-10">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="white" className="size-10 hover:stroke-[#464646]">
@@ -24,9 +22,7 @@ function Creator ({creators, items}) {
               </div>
               <p>{creator.about}</p>
           </div>
-       
         </div>
-
         <div className="flex flex-col items-center mt-7 md:mt-0 mb-10 md:mb-0 ">
           <div className="art-scrollbar p-5 grid grid-cols-2 gap-4 overflow-y-scroll min-h-[499px] max-h-[500px]">
             {creator_items.map((item, index) => (
@@ -42,8 +38,6 @@ function Creator ({creators, items}) {
             ))}
             </div>
         </div>
-     
-         
       </div>
     ) : null
   );

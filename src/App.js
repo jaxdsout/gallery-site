@@ -49,7 +49,7 @@ function App() {
   }, []);
   
   return (
-    <div className='flex flex-col h-screen justify-between w-screen'>
+    <div className='flex flex-col justify-center w-screen'>
       <Header />
       <Routes>
         <Route path="/" element={

@@ -6,9 +6,9 @@ function Footer () {
 
     return (
         <div className='wave-3 p-10 hover:bg-black'>
-            <div className='h-[20px] mt-10 hover:h-auto focus:h-auto overflow-hidden'>
-                <div className='mt-5 flex flex-col md:flex-row  items-start justify-around text-white'>
-                    <div className='flex flex-col'>
+            <div className='h-[30px] hover:h-auto focus:h-auto overflow-hidden'>
+                <div className='mt-10 flex flex-col md:flex-row  items-start justify-around text-white'>
+                    <div className='flex flex-col mt-3'>
                         <h3 className='tracking-[0.2rem] font-semibold lowercase pointer-events-none'>THE GALLERY.</h3>
                         <Link className="font-bold text-[#444444] uppercase pt-2 pb-2 hover:text-white" to={"/items/all/"}>ART</Link>
                         <Link className="font-bold text-[#444444] uppercase pt-2 pb-2 hover:text-white" to={"/creators/all/"}>CREATORS</Link>

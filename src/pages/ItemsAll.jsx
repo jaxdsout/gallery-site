@@ -55,7 +55,7 @@ function ItemsAll({ items }) {
   const displayedItems = results.length > 0 ? results : items;
 
   return (
-    <div className="flex flex-col items-center justify-center w-full">
+    <div className="flex flex-col items-center justify-center w-full mt-16 md:mt-10 mb-20">
       <SearchBar 
         searchString={searchString} 
         handleSearch={handleSearch}

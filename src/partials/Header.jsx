@@ -10,8 +10,8 @@ function Header () {
                 </Link>
                 </div>
                 <div className='flex flex-row items-baseline'>
-                    <Link to={"/items/all/"}><button className='mr-4 rounded-md bg-[#1b1b1b] text-white pl-6 pr-6 pt-2 pb-2 tracking-widest text-sm font-semibold border-2 border-[#242424] hover:bg-[#848484] g-button'>ART</button></Link>
-                    <Link to={"/events/"}><button className='mr-4 rounded-md bg-[#1b1b1b] text-white pl-6 pr-6 pt-2 pb-2 tracking-widest text-sm font-semibold border-2 border-[#242424] hover:bg-[#848484] g-button'>EVENTS</button></Link>
+                    <Link to={"/items/all/"}><button className='ml-2 mr-2 md:ml-0 md:mr-4 rounded-md bg-[#1b1b1b] text-white pl-6 pr-6 pt-2 pb-2 tracking-widest text-sm font-semibold border-2 border-[#242424] hover:bg-[#848484] g-button'>ART</button></Link>
+                    <Link to={"/events/"}><button className='mr-2 md:mr-4 rounded-md bg-[#1b1b1b] text-white pl-6 pr-6 pt-2 pb-2 tracking-widest text-sm font-semibold border-2 border-[#242424] hover:bg-[#848484] g-button'>EVENTS</button></Link>
                 </div>
             </div>
            
