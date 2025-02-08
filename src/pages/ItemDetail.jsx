@@ -27,6 +27,18 @@ function ItemDetail ({items}) {
     setShowModal(false);
   };
 
+  const formatDate = (datetimeStr) => {
+    const dateObj = new Date(datetimeStr);
+    return dateObj.toLocaleString('default', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+    }).replace(',', '').replace(',', '');
+};
+
   useEffect(() => {
     if (item) {
       handleCountdown()
@@ -36,14 +48,14 @@ function ItemDetail ({items}) {
     return (
       item ? (
         <>
-          <div className="flex flex-col md:flex-row items-center md:items-end justify-center">
+          <div className="flex flex-col md:flex-row items-center md:items-end justify-center mb-16 mt-12">
             <div className="flex flex-col pr-0 md:pr-4 items-center md:items-start">
               <Link to={"/items/all/"} className="mb-5">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="white" className="size-10 hover:stroke-[#464646]">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
                 </svg>
               </Link>
-              <img className="drop-shadow-md rounded-xl max-w-[30rem] max-h-[30rem]" src={item.image} alt={item.title}/>
+              <img className="drop-shadow-md rounded-xl max-w-[24rem] max-h-[24rem] md:max-w-[30rem] md:max-h-[30rem]" src={item.image} alt={item.title}/>
             </div>
             <div className="flex flex-col items-center md:items-start max-w-[800px] bg-[#9f9f9f] rounded-xl p-6 mt-6 md:mt-0 border-2 border-[#a4a4a4] drop-shadow-md">
               <div className="flex flex-col items-start justify-start">
@@ -77,7 +89,7 @@ function ItemDetail ({items}) {
                     {daysLeft < 0 ? (
                       <p>AUCTION ENDED {-daysLeft} DAYS AGO </p>
                     ) : (
-                      <p> ONLY {daysLeft} DAYS REMAINING UNTIL AUCTION ENDS </p>
+                      <p> {daysLeft} DAYS UNTIL AUCTION ENDS </p>
                     )}
                   </div>
 
@@ -88,17 +100,17 @@ function ItemDetail ({items}) {
               )}
             </div>
           </div>   
-          <Modal open={showModal} onClose={handleCloseModal}>
+          <Modal open={showModal} onClose={handleCloseModal} className="!w-[280px]">
             <Modal.Header>Previous Bids</Modal.Header>
             <Modal.Content>
               {item.bids.length === 0 ? (
-                <p className="nobids">No bids have been submitted for this item yet.</p>
+                <p className="text-center">No bids have been submitted for this item yet.</p>
                 ) : (
                 item.bids.map((bid, index) => (
-                  <div key={index}>
+                  <div className="bg-[#4c4c4c] rounded-md p-3 text-white mb-3" key={index}>
+                    <p className=""><b>Timestamp:</b> {formatDate(bid.time)}</p>
+                    <p className=""><b>Amount:</b> ${bid.amount}</p>
                     <hr />
-                    <p className="nobids">Timestamp: {bid.time}</p>
-                    <p className="nobids">Amount: ${bid.amount}</p>
                   </div>
                 ))
               )}

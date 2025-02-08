@@ -7,9 +7,9 @@ function Item ({ item, onItemClick }) {
   
     return (
       item.image ? (
-        <div className='flex flex-col items-center'>
+        <div className='flex flex-col items-center mb-5'>
           <img
-            className='tile max-w-1/8 max-h-1/8 rounded-lg drop-shadow-md fancy-hover'
+            className='tile w-full h-full max-w-[20rem] max-h-[20rem] object-cover rounded-lg drop-shadow-md fancy-hover'
             src={item.image} 
             alt={item.title}
             onClick={handleClick}

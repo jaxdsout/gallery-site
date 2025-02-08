@@ -49,50 +49,30 @@ function App() {
   }, []);
   
   return (
-    <div className='flex flex-col justify-center w-screen'>
+    <div className='flex flex-col justify-between h-screen'>
       <Header />
       <Routes>
         <Route path="/" element={
-          <Home 
-            items={items}
-            events={events}
-            featured_artist={featured_artist}
-            keyword={keyword}
-          />
+          <Home items={items} events={events} featured_artist={featured_artist} keyword={keyword} />
         }/>
         <Route path="/items/all/" element={
-          <ItemsAll 
-            items={items}
-          />
+          <ItemsAll items={items} />
         }/>
         <Route path="/items/:id/" element={
-          <ItemDetail 
-            items={items}
-          />}
-        />
+          <ItemDetail items={items} />
+        }/>
         <Route path="/items/featured/" element={
-          <FeaturedSet 
-            items={items} 
-            featured_artist={featured_artist}
-            keyword={keyword}
-          />}
-        />
+          <FeaturedSet items={items} featured_artist={featured_artist} keyword={keyword} />
+        }/>
         <Route path="/creators/all/" element={
-          <AllCreators creators={creators} 
-          />}
-        />
-        <Route
-          path="/creators/:id/"
-          element={
-            <Creator 
-              items={items} 
-              creators={creators}
-            />}
-        />
-        <Route
-          path="/events/"
-          element={<Events events={events} />}
-        />
+          <AllCreators creators={creators} />
+        }/>
+        <Route path="/creators/:id/" element={
+          <Creator items={items} creators={creators}/>
+        }/>
+        <Route path="/events/" element={
+          <Events events={events} />
+        }/>
       </Routes>
       <Footer />
     </div>

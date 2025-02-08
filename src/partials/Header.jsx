@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 function Header () {
     return (
-        <div className='wave-1 p-8 hover:bg-black'>
+        <div className='wave-1 p-8 hover:bg-black drop-shadow-md'>
             <div className='flex flex-row justify-between items-center h-[120px] hover:h-[130px] -mt-8'>
                 <div>
                 <Link to={"/"}>
