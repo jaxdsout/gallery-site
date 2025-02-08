@@ -1,14 +1,13 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 function CreatorsAll({creators}) {
   return (
-    <div className="creators_page">
-      <h3 className="creator_type">CREATORS</h3>
+    <div className="flex flex-col items-center">
+      <h3 className="lowercase text-8xl text-white font-bold mb-10 user-select-none pointer-events-none">CREATORS</h3>
       {creators.map((creator) => (
-          <div className="creator_name_all">
-            <Link to={`/creators/${creator.id}`}>{creator.name}</Link>
-          </div>
+            <Link to={`/creators/${creator.id}`} className="uppercase font-bold text-4xl mb-5 text-[#f5f5f5] hover:text-black fancy-hover active:text-white">
+              {creator.name}
+            </Link>
       ))}
     </div>
   )

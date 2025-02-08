@@ -39,38 +39,38 @@ function Bid({ item, daysLeft }) {
   };
 
   return (
-    <div className="bid_component">
+    <>
       {daysLeft > 0 ? (
-        <>
-        <form onSubmit={makeBid} className="bid_form">
+        <div className="flex flex-row items-start p-3 justify-center mb-4">
           <input
             type="number"
             value={bid}
-            className="bid_input"
+            className="mr-3 text-black rounded-md indent-3 font-semibold h-[30px] w-[120px]"
             onClick={handleInputClick}
             onChange={(event) => setBid(event.target.value)}
           />
-          <button className="make_bid" type="submit">
-            <i className="arrow alternate circle up icon"></i>
-          </button>
-        </form>
-        <Modal open={showModal} onClose={handleCloseModal}>
-          <Modal.Header>Mininum Bid Error</Modal.Header>
-          <Modal.Content>
-            <p className="bid_more">YOU NEED TO BID MORE.</p>
-            <p className="bid_more">
-              THE MINIMUM BID AMOUNT IS CURRENTLY SET AT <b>${minBid} USD</b>
-            </p>
-          </Modal.Content>
-          <Modal.Actions>
-            <Button onClick={handleCloseModal}>CLOSE</Button>
-          </Modal.Actions>
-        </Modal>
-        </>
+          <i className="arrow alternate circle up icon text-[#006400] !text-3xl hover:text-[#0b8c0b] cursor-pointer" onClick={makeBid}></i>
+        </div>
       ) : (
         null
       )}
-    </div>
+    {showModal ? (
+      <Modal open={showModal} onClose={handleCloseModal} className="!w-[280px]">
+        <Modal.Header>Mininum Bid Notice</Modal.Header>
+        <Modal.Content>
+          <div className="text-black text-center font-base mt-3 mb-3">
+            <p>YOU NEED TO BID MORE.</p>
+            <p>
+              THE MINIMUM BID IS CURRENTLY SET AT <b>${minBid} USD</b>
+            </p>
+          </div> 
+        </Modal.Content>
+        <Modal.Actions className="flex items-center flex-col">
+          <Button onClick={handleCloseModal}>CLOSE</Button>
+        </Modal.Actions>
+      </Modal>
+    ) : null }
+      </>
   );
 }
 

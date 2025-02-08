@@ -1,11 +1,11 @@
-import AllItems from './pages/ItemsAll'
+import ItemsAll from './pages/ItemsAll'
 import ItemDetail from './pages/ItemDetail'
-import FeaturedItems from './pages/ItemFeatured'
+import FeaturedSet from './pages/FeaturedSet'
 
-import Creator from './pages/CreatorDetail'
+import Creator from './pages/Creator'
 import AllCreators from './pages/CreatorsAll'
 
-import AllEvents from './pages/EventsAll';
+import Events from './pages/Events';
 import Header from './partials/Header';
 import Footer from './partials/Footer';
 import Home from './pages/Home';
@@ -49,7 +49,7 @@ function App() {
   }, []);
   
   return (
-    <div className='wrapper'>
+    <div className='flex flex-col h-screen justify-between w-screen'>
       <Header />
       <Routes>
         <Route path="/" element={
@@ -61,7 +61,7 @@ function App() {
           />
         }/>
         <Route path="/items/all/" element={
-          <AllItems 
+          <ItemsAll 
             items={items}
           />
         }/>
@@ -71,7 +71,7 @@ function App() {
           />}
         />
         <Route path="/items/featured/" element={
-          <FeaturedItems 
+          <FeaturedSet 
             items={items} 
             featured_artist={featured_artist}
             keyword={keyword}
@@ -91,7 +91,7 @@ function App() {
         />
         <Route
           path="/events/"
-          element={<AllEvents events={events} />}
+          element={<Events events={events} />}
         />
       </Routes>
       <Footer />

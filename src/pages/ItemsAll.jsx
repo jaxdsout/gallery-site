@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import SearchBar from "../components/SearchBar";
 
-function AllItems({ items }) {
+function ItemsAll({ items }) {
   const navigate = useNavigate();
   const [results, setResults] = useState([]);
   const [searchString, setSearchString] = useState('');
@@ -55,7 +55,7 @@ function AllItems({ items }) {
   const displayedItems = results.length > 0 ? results : items;
 
   return (
-    <div className="art-page">
+    <div className="flex flex-col items-center justify-center w-full">
       <SearchBar 
         searchString={searchString} 
         handleSearch={handleSearch}
@@ -63,14 +63,14 @@ function AllItems({ items }) {
         handleCategory={handleCategory}
       />
       {emptyResults && 
-        <div className="empty_results">
+        <div className="mb-5">
           <p>No results found for "
-            <span className="search_string">{lastSearch}</span>" in 
-            <span className="search_string"> {category}</span>. Showing <b>all</b> results instead.
+            <span className="font-extrabold">{lastSearch}</span>" in 
+            <span className="font-extrabold"> {category}</span>. Showing <b>all</b> results instead.
           </p>
         </div>
       }
-      <div className="all_items">
+      <div className="art-scrollbar p-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 overflow-y-scroll min-h-[899px] max-h-[900px]">
         {displayedItems.map((item, index) => (
           <Item key={index} item={item} onItemClick={handleItemClick} />
         ))}
@@ -79,4 +79,4 @@ function AllItems({ items }) {
   );
 }
 
-export default AllItems;
+export default ItemsAll;
