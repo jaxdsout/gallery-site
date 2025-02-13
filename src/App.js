@@ -47,7 +47,7 @@ function App() {
     fetchData();
     console.log("firing use effect")
   }, []);
-  
+   
   return (
     <div className='flex flex-col justify-between h-screen'>
       <Header />
