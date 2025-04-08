@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 function Header () {
     return (
         <div className='wave-1 p-8 hover:bg-black drop-shadow-md'>
-            <div className='flex flex-row justify-between items-center h-[120px] hover:h-[130px] -mt-8'>
+            <div className='flex flex-row justify-between items-center h-[130px] -mt-8 mb-4'>
                 <div>
                 <Link to={"/"}>
                     <p className="text-3xl md:text-5xl text-white tracking-widest lowercase select-none font-bold text-nowrap">THE GALLERY.</p>

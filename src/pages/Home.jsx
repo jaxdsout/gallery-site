@@ -5,8 +5,8 @@ function Home ({ items, events, featured_artist, keyword }) {
     const featured_event = events[0]
 
     return (
-        <div className="flex flex-col items-center justify-end">
-            <img className="object-cover w-full max-h-[500px] -mt-16" src="https://warehouse-bkt-0810.s3.amazonaws.com/header_copy.png" alt="banner" />
+        <div className="flex flex-col items-center justify-end w-full ">
+            <img className="object-cover -mt-16 max-h-[300px] w-full" src="https://warehouse-bkt-0810.s3.us-east-2.amazonaws.com/header.jpg" alt="banner" />
             <div className="wave-2 w-full p-3">
                 <div className="flex flex-row justify-around items-center shadow-inner pb-10 pt-24">
                     <div className="w-1/2 h-[650px] pl-2 pr-4 text-center">
