@@ -12,7 +12,7 @@ import Home from './pages/Home';
 
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
-import {Route, Routes, useLocation,} from 'react-router-dom'
+import {Route, Routes,} from 'react-router-dom'
 import Cart from './partials/Cart'
 
 
@@ -20,26 +20,13 @@ function App() {
   const [items, setItems] = useState([]);
   const [creators, setCreators] = useState([]);
   const [events, setEvents] = useState([]);
-  const [cartPath, setCartPath] = useState(false)
-  const location = useLocation();
-  const path = location.pathname
-
-  useEffect(() => {
-    if (path === '/items/all' || path === '/items/:id' || path === '/items/featured') {
-      setCartPath(true)
-    } else {
-      setCartPath(false)
-    }
-  }, [path])
-
-
-
 
   const keyword = 'aerospirit'
-  const featured_artist = "David Rhodes"
+  const featured_artist = {
+    id: 2,
+    name: "David Rhodes"
+  }
 
-
-  
   async function fetchData() {
     try {
       const itemsPromise = axios.get(`${process.env.REACT_APP_API_URL}items/`);
@@ -59,7 +46,6 @@ function App() {
       console.error('Error fetching data', error);
     }
   }
-
   
   useEffect(() => {
     fetchData();
@@ -68,6 +54,7 @@ function App() {
    
   return (
     <div className='relative flex flex-col justify-between h-screen'>
+      <Cart />
       <Header />
       <Routes>
         <Route path="/" element={
@@ -92,9 +79,6 @@ function App() {
           <Events events={events} />
         }/>
       </Routes>
-      {cartPath && (
-        <Cart />
-      )}
       <Footer />
     </div>
   );

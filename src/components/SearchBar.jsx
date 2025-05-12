@@ -16,7 +16,7 @@ function SearchBar({ searchString, handleSearch, handleSubmit, handleCategory })
                 onChange={handleSearch}
                 onKeyDown={handleSubmit}
             />
-            <select className="font-semibold w-[120px] tracking-[0.2rem] ml-2 mr-2 text-white bg-[#5d5d5d] border-2 border-[#808080] p-3 rounded-lg hover:bg-white focus:bg-white hover:text-black focus:text-black drop-shadow-sm" onChange={handleUserChoice}>
+            <select className="font-semibold w-[120px] tracking-[0.05rem] ml-2 mr-2 text-white bg-black border-2 border-[#808080] p-3 text-sm rounded-lg hover:bg-white focus:bg-white hover:text-black focus:text-black drop-shadow-sm" onChange={handleUserChoice}>
                 <option value=''>ALL</option>
                 <option value='painting'>PAINTINGS</option>
                 <option value='wallart'>WALL ART</option>

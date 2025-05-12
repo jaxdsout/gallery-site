@@ -40,37 +40,36 @@ function Bid({ item, daysLeft }) {
 
   return (
     <>
-      {daysLeft > 0 ? (
-        <div className="flex flex-row items-start p-3 justify-center mb-4">
+      {daysLeft > 0 && (
+        <div className="flex flex-row items-center p-1 justify-center mb-4 w-full relative font-semibold">
+          <span className="absolute left-4">$</span>
           <input
             type="number"
             value={bid}
-            className="mr-3 text-black rounded-md indent-3 font-semibold h-[30px] w-[120px]"
+            className="mr-3 rounded-md indent-6 h-[3rem] w-full"
             onClick={handleInputClick}
             onChange={(event) => setBid(event.target.value)}
           />
-          <i className="arrow alternate circle up icon text-[#006400] !text-3xl hover:text-[#0b8c0b] cursor-pointer" onClick={makeBid}></i>
+          <i className="arrow alternate circle up icon text-[#00cf29] !text-3xl hover:text-[#0b8c0b] cursor-pointer" onClick={makeBid}></i>
         </div>
-      ) : (
-        null
       )}
-    {showModal ? (
-      <Modal open={showModal} onClose={handleCloseModal} className="!w-[280px]">
-        <Modal.Header>Mininum Bid Notice</Modal.Header>
-        <Modal.Content>
-          <div className="text-black text-center font-base mt-3 mb-3">
-            <p>YOU NEED TO BID MORE.</p>
-            <p>
-              THE MINIMUM BID IS CURRENTLY SET AT <b>${minBid} USD</b>
-            </p>
-          </div> 
-        </Modal.Content>
-        <Modal.Actions className="flex items-center flex-col">
-          <Button onClick={handleCloseModal}>CLOSE</Button>
-        </Modal.Actions>
-      </Modal>
-    ) : null }
-      </>
+      {showModal && (
+        <Modal open={showModal} onClose={handleCloseModal} className="!w-[280px]">
+          <Modal.Header>Mininum Bid Notice</Modal.Header>
+          <Modal.Content>
+            <div className="text-black text-center font-base mt-3 mb-3">
+              <p>YOU NEED TO BID MORE.</p>
+              <p>
+                THE MINIMUM BID IS CURRENTLY SET AT <b>${minBid} USD</b>
+              </p>
+            </div> 
+          </Modal.Content>
+          <Modal.Actions className="flex items-center flex-col">
+            <Button onClick={handleCloseModal}>CLOSE</Button>
+          </Modal.Actions>
+        </Modal>
+      )}
+    </>
   );
 }
 

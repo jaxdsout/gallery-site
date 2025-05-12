@@ -6,7 +6,7 @@ function Footer () {
     const tele = '555555555'
 
     return (
-        <div className='wave-3 p-8 hover:bg-black drop-shadow-md text-[#444444] hover:text-white'>
+        <div className='wave-3 p-8 hover:bg-black drop-shadow-md text-[#444444] hover:text-white z-40'>
             <div className='h-[90px] hover:h-auto active:h-auto focus:h-auto overflow-hidden w-full'>
                 <div className='flex flex-col md:flex-row justify-start md:justify-evenly items-start mt-16'>
                     <div className='flex flex-col p-3'>

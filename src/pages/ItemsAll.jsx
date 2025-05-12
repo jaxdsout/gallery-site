@@ -1,4 +1,3 @@
-import Item from "../components/Item";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -69,7 +68,22 @@ function ItemsAll({ items }) {
       }
       <div className="art-scrollbar p-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 overflow-y-scroll min-h-[899px] max-h-[900px]">
         {displayedItems.map((item, index) => (
-          <Item key={index} item={item} onItemClick={handleItemClick} />
+          <div className='flex flex-col items-center mb-5' style={{ color: 'black' }}>
+            <img
+              className='tile w-[20rem] h-[20rem] object-cover rounded-lg drop-shadow-md fancy-hover'
+              src={item.image} 
+              alt={item.title}
+              onClick={() => handleItemClick(item)}
+            />
+            <div className='flex flex-row items-baseline mt-1 justify-center'>
+              <p className='text-sm'>
+                {item.title.length > 50
+                  ? item.title.substring(0, 40) + '...'
+                  : item.title}
+                <span className="font-bold ml-4">${item.current_price}</span>
+              </p> 
+            </div> 
+          </div>          
         ))}
       </div>
     </div>

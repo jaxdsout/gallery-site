@@ -5,10 +5,11 @@ import { connect } from 'react-redux';
 import { close_cart, open_cart } from '../store/actions';
 import { isMatch } from 'date-fns';
 
-function Header ({ cartVisible, close_cart, open_cart }) {
+function Header ({ cartVisible, close_cart, open_cart, cart }) {
     const navigate = useNavigate();
     const location = useLocation();
     const [cartPath, setCartPath] = useState(false);
+    const [hovered, setHovered] = useState('');
 
     const toggleCart = () => {
         if (cartVisible) {
@@ -27,9 +28,7 @@ function Header ({ cartVisible, close_cart, open_cart }) {
             location.pathname === '/items/all' ||
             location.pathname === '/items/featured' ||
             matchPath({ path: '/items/:id', end: true }, location.pathname)
-        ) {
-            setCartPath(!!isMatch)
-        }
+        ) { setCartPath(true) } else { setCartPath(false)}
     }, [location.pathname])
 
 
@@ -54,8 +53,13 @@ function Header ({ cartVisible, close_cart, open_cart }) {
                         </svg>
                     </div>
                     {cartPath && (
-                        <div onClick={() => toggleCart()} className='cursor-pointer mx-1'>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="white" className="size-8 hover:stroke-black">
+                        <div onClick={() => toggleCart()} className='relative cursor-pointer mx-1' onMouseEnter={() => setHovered('cart')} onMouseLeave={() => setHovered('')}>
+                            {cart.length > 0 && (
+                                <div className='absolute flex flex-col items-center justify-center text-black rounded-full w-[1rem] h-[1rem] left-2.5' style={{ background: hovered === 'cart' ? 'black' : 'white' }}>
+                                    <span className='text-xs font-extrabold'>{cart.length}</span>
+                                </div>
+                            )}
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" className="size-8" style={{ stroke: hovered === 'cart' ? 'black' : 'white' }}>
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
                             </svg>
                         </div>
@@ -70,6 +74,7 @@ function Header ({ cartVisible, close_cart, open_cart }) {
 
 const mapStateToProps = state => ({
     cartVisible: state.cartVisible,
+    cart: state.cart
 })
 
 export default connect(mapStateToProps, { close_cart, open_cart })(Header);
