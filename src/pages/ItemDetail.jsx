@@ -51,7 +51,7 @@ function ItemDetail ({items}) {
           <div className="flex flex-col md:flex-row items-center md:items-end justify-center mb-16 mt-12">
             <div className="flex flex-col pr-0 md:pr-4 items-center md:items-start">
               <Link to={"/items/all/"} className="mb-5">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="white" className="size-10 hover:stroke-[#464646]">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="black" className="size-10 hover:stroke-[#464646]">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
                 </svg>
               </Link>

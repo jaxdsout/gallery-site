@@ -32,9 +32,6 @@ function ItemsAll({ items }) {
     navigate(`/items/${item.id}/`);
   };
 
-  const displayEmptyResults = () => {
-    setEmptyResults(true);
-  };
 
   const searchItems = (searchString, category) => {
     const userSearch = encodeURIComponent(searchString);
@@ -42,7 +39,7 @@ function ItemsAll({ items }) {
     axios.get(url)
       .then((res) => {
         if (res.data.length === 0) {
-          displayEmptyResults();
+          setEmptyResults(true);
         }
         setResults(res.data);
         setLastSearch(searchString)

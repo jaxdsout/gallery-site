@@ -12,16 +12,33 @@ import Home from './pages/Home';
 
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
-import {Route, Routes} from 'react-router-dom'
+import {Route, Routes, useLocation,} from 'react-router-dom'
+import Cart from './partials/Cart'
 
 
 function App() {
   const [items, setItems] = useState([]);
   const [creators, setCreators] = useState([]);
   const [events, setEvents] = useState([]);
+  const [cartPath, setCartPath] = useState(false)
+  const location = useLocation();
+  const path = location.pathname
+
+  useEffect(() => {
+    if (path === '/items/all' || path === '/items/:id' || path === '/items/featured') {
+      setCartPath(true)
+    } else {
+      setCartPath(false)
+    }
+  }, [path])
+
+
+
 
   const keyword = 'aerospirit'
   const featured_artist = "David Rhodes"
+
+
   
   async function fetchData() {
     try {
@@ -42,6 +59,7 @@ function App() {
       console.error('Error fetching data', error);
     }
   }
+
   
   useEffect(() => {
     fetchData();
@@ -49,31 +67,34 @@ function App() {
   }, []);
    
   return (
-    <div className='flex flex-col justify-between h-screen'>
+    <div className='relative flex flex-col justify-between h-screen'>
       <Header />
       <Routes>
         <Route path="/" element={
           <Home items={items} events={events} featured_artist={featured_artist} keyword={keyword} />
         }/>
-        <Route path="/items/all/" element={
+        <Route path="/items/all" element={
           <ItemsAll items={items} />
         }/>
-        <Route path="/items/:id/" element={
+        <Route path="/items/:id" element={
           <ItemDetail items={items} />
         }/>
-        <Route path="/items/featured/" element={
+        <Route path="/items/featured" element={
           <FeaturedSet items={items} featured_artist={featured_artist} keyword={keyword} />
         }/>
-        <Route path="/creators/all/" element={
+        <Route path="/creators/all" element={
           <AllCreators creators={creators} />
         }/>
-        <Route path="/creators/:id/" element={
+        <Route path="/creators/:id" element={
           <Creator items={items} creators={creators}/>
         }/>
-        <Route path="/events/" element={
+        <Route path="/events" element={
           <Events events={events} />
         }/>
       </Routes>
+      {cartPath && (
+        <Cart />
+      )}
       <Footer />
     </div>
   );

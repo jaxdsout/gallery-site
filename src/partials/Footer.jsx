@@ -2,17 +2,8 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 function Footer () {
-    // const [showFooter, setShowFooter] = useState(false);
     const email = 'info@thegallery.zest';
     const tele = '555555555'
-
-    // const handleMouseDown = () => {
-    //     if (showFooter) {
-    //         setShowFooter(false)
-    //     } else {
-    //         setShowFooter(true)
-    //     }
-    // }
 
     return (
         <div className='wave-3 p-8 hover:bg-black drop-shadow-md text-[#444444] hover:text-white'>

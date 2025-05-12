@@ -20,7 +20,7 @@ function Events ({ events }) {
   
     return (
         <div className='flex flex-col items-center justify-center mt-5'>
-            <h3 className='text-white lowercase font-semibold tracking-[0.3rem] text-4xl md:text-6xl mb-10'>UPCOMING EVENTS.</h3>
+            <h3 className='text-black lowercase font-semibold tracking-[0.3rem] text-4xl md:text-6xl mb-10'>UPCOMING EVENTS.</h3>
             {filteredEvents.map((event) => (
               <div className="flex flex-col w-10/12" key={event.id}>
                 <img className='object-cover w-full h-[30rem] rounded-lg drop-shadow-md mb-1 md:mb-6'
@@ -34,9 +34,9 @@ function Events ({ events }) {
                     <p className='text-sm'>{event.description}</p>
                   </div>
                   <div>
-                  {event.creator ? (
+                  {event.creator && (
                     <p className='text-sm'>Featured Artist: {event.creator.name}</p>
-                  ) : null}
+                  )}
                   </div>
                 </div>
               </div>

@@ -5,7 +5,8 @@
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #a9a9a9 !important;
+  background-color: white !important;
+  color: #0b0b0b;
 }
 
 code { 
@@ -13,7 +14,7 @@ code {
 }
 
 .wave-1 {
-  background-color: #464646;
+  background-color: #0b0b0b;
   -webkit-box-shadow: inset 0px 0px 39px -52px rgba(0,0,0,0.75);
   -moz-box-shadow: inset 0px 0px 39px -52px rgba(0,0,0,0.75);
   box-shadow: inset 0px 0px 39px -52px rgba(0,0,0,0.75);
@@ -26,7 +27,7 @@ code {
 
 .wave-2 { 
   transform: translateY(-90px);
-  background-color: #a9a9a9;
+  background-color: white;
   --mask:
   radial-gradient(34.99px at 50% 48.00px,#000 99%,#0000 101%) calc(50% - 60px) 0/120px 100%,
   radial-gradient(34.99px at 50% -18px,#0000 99%,#000 101%) 50% 30px/120px 100% repeat-x;
@@ -35,7 +36,7 @@ code {
 }
 
 .wave-3 {
-  background-color: #464646;
+  background-color: #0b0b0b;
   --mask:
   radial-gradient(34.99px at 50% 48.00px,#000 99%,#0000 101%) calc(50% - 60px) 0/120px 100%,
   radial-gradient(34.99px at 50% -18px,#0000 99%,#000 101%) 50% 30px/120px 100% repeat-x;
